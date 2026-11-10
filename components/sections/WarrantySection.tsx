@@ -2,11 +2,16 @@
 
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { WARRANTY_PERIODS, getImageUrl } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
+
+const SparklesCore = dynamic(
+  () => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore),
+  { ssr: false }
+);
 
 export function WarrantySection() {
   return (

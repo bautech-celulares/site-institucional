@@ -23,8 +23,8 @@ export const CONTACTS = {
   ],
 };
 
-export const getImageUrl = (id: string, width: number) =>
-  `https://api.builder.io/api/v1/image/assets/TEMP/${id}?width=${width}`;
+export const getImageUrl = (id: string, width: number, format: string = "webp") =>
+  `https://cdn.builder.io/api/v1/image/assets/TEMP/${id}?width=${width}&format=${format}&quality=80`;
 
 export interface ServiceItem {
   title: string;

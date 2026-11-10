@@ -216,6 +216,7 @@ export function ServicesSection() {
                     href={waLink}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`Consultar ${service.title.toLowerCase()} no WhatsApp`}
                     className="inline-flex w-full items-center justify-center rounded-full bg-white py-3 sm:py-2.5 text-xs font-bold text-brand-blue border border-brand-blue/20 shadow-xs transition-colors hover:bg-brand-blue hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
                   >
                     Consultar este serviço
