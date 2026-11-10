@@ -106,7 +106,7 @@ function crc32(buf) {
   return (c ^ 0xffffffff) >>> 0;
 }
 
-const outputPath = path.join(__dirname, "../meu-site/public/og-image.png");
+const outputPath = path.join(__dirname, "../public/og-image.png");
 const pngBuffer = createPng(1200, 630);
 fs.writeFileSync(outputPath, pngBuffer);
 console.log(`Open Graph image generated successfully: ${outputPath} (${(pngBuffer.length / 1024).toFixed(1)} KB)`);

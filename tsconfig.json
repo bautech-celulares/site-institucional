@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "_backup_antigravity_scaffold", "meu-site", "out"]
+  "exclude": ["node_modules", "out"]
 }
