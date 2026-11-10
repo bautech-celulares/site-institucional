@@ -1,0 +1,46 @@
+# Next.js Build Output
+.next/
+out/
+build/
+dist/
+dist-ssr/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Backup & Migration
+_backup_antigravity_scaffold/
+
+# Debug and Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env*
+!.env.example
+
+# TypeScript & Next build cache
+*.tsbuildinfo
+next-env.d.ts
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary files
+.tmp/
+.vercel/

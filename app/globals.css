@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@source "..";
+
+@theme {
+  --color-brand-blue: #006CB3;
+  --color-brand-blue-hover: #005a96;
+  --color-brand-cyan: #00B1E2;
+  --color-brand-cyan-hover: #009ec9;
+  --color-brand-surface: #EAF5FB;
+  --color-brand-dark: #302E2C;
+  --color-brand-dark-card: #403D3B;
+  --color-brand-dark-hover: #4a4744;
+  --color-brand-muted: #595754;
+  --color-brand-border: #CDD2D1;
+  --color-brand-whatsapp: #25D366;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mirano Extended";
+  src: url("/fonts/MiranoExtended-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #302e2c;
+}
+
+::selection {
+  background-color: #006CB3;
+  color: #ffffff;
+}
+
+/* Barra de Rolagem Customizada — Design System Bautech */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #006CB3 #EAF5FB;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EAF5FB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #006CB3;
+  border-radius: 9999px;
+  border: 2px solid #EAF5FB; /* Cria o respiro visual elegante de pílula flutuante */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #005a96;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Metropolis", sans-serif;
+}
+
+.font-mirano {
+  font-family: "Mirano Extended", "Metropolis", sans-serif;
+  font-weight: 700;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-hero-fade-up {
+  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-fade-in {
+  animation: heroFadeIn 0.5s ease-out both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration, 35s) linear infinite;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-fade-up,
+  .animate-hero-fade-in,
+  .animate-marquee {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
