@@ -131,6 +131,37 @@ body {
   animation: marquee var(--duration, 35s) linear infinite;
 }
 
+/* Animações aveludadas para o Mockup do WhatsApp */
+@keyframes chatBubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-chat-bubble {
+  animation: chatBubbleIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes typingPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-typing-dot {
+  animation: typingPulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 .delay-100 {
   animation-delay: 100ms;
 }
@@ -146,7 +177,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-fade-up,
   .animate-hero-fade-in,
-  .animate-marquee {
+  .animate-marquee,
+  .animate-chat-bubble,
+  .animate-typing-dot {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

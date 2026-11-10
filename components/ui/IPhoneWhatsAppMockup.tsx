@@ -244,7 +244,7 @@ export function IPhoneWhatsAppMockup() {
             </div>
 
             {/* Mensagem 1: Cliente pergunta sobre troca de tela */}
-            <div className="flex justify-end motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out">
+            <div className="flex justify-end">
               <div className="max-w-[85%] bg-[#d9fdd3] text-[#111b21] rounded-lg rounded-tr-none px-2.5 py-1.5 shadow-xs text-[11px] leading-tight flex flex-col gap-0.5">
                 <span>Oi! Trincou a tela do meu celular. Vocês trocam aqui em São Bento?</span>
                 <div className="flex items-center justify-end gap-0.5 text-[8.5px] text-[#667781]">
@@ -256,7 +256,7 @@ export function IPhoneWhatsAppMockup() {
 
             {/* Mensagem 2: Bautech responde confirmando modelo (Animação aveludada e desacelerada) */}
             {step >= 1 && (
-              <div className="flex justify-start motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <div className="flex justify-start animate-chat-bubble">
                 <div className="max-w-[85%] bg-white text-[#111b21] rounded-lg rounded-tl-none px-2.5 py-1.5 shadow-xs text-[11px] leading-tight flex flex-col gap-0.5">
                   <span>Olá! Trocamos sim! Qual é a marca e o modelo exato do seu celular?</span>
                   <div className="flex items-center justify-end text-[8.5px] text-[#667781]">
@@ -268,7 +268,7 @@ export function IPhoneWhatsAppMockup() {
 
             {/* Mensagem 3: Cliente informa o modelo */}
             {step >= 2 && (
-              <div className="flex justify-end motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <div className="flex justify-end animate-chat-bubble">
                 <div className="max-w-[85%] bg-[#d9fdd3] text-[#111b21] rounded-lg rounded-tr-none px-2.5 py-1.5 shadow-xs text-[11px] leading-tight flex flex-col gap-0.5">
                   <span>É um iPhone 11. Vocês têm a tela aí?</span>
                   <div className="flex items-center justify-end gap-0.5 text-[8.5px] text-[#667781]">
@@ -281,7 +281,7 @@ export function IPhoneWhatsAppMockup() {
 
             {/* Mensagem 4: Bautech explica que pede a peça sob encomenda para o modelo com garantia */}
             {step >= 3 && (
-              <div className="flex justify-start motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <div className="flex justify-start animate-chat-bubble">
                 <div className="max-w-[85%] bg-white text-[#111b21] rounded-lg rounded-tl-none px-2.5 py-1.5 shadow-xs text-[11px] leading-tight flex flex-col gap-0.5">
                   <span>Fazemos o pedido da peça direto para o seu modelo! Chega super rápido e trocamos com garantia de 90 dias. 🛠️</span>
                   <div className="flex items-center justify-end text-[8.5px] text-[#667781]">
@@ -293,7 +293,7 @@ export function IPhoneWhatsAppMockup() {
 
             {/* Mensagem 5: Cliente confirma */}
             {step >= 4 && (
-              <div className="flex justify-end motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <div className="flex justify-end animate-chat-bubble">
                 <div className="max-w-[85%] bg-[#d9fdd3] text-[#111b21] rounded-lg rounded-tr-none px-2.5 py-1.5 shadow-xs text-[11px] leading-tight flex flex-col gap-0.5">
                   <span>Excelente! Vou querer pedir sim, muito obrigado! 🙌</span>
                   <div className="flex items-center justify-end gap-0.5 text-[8.5px] text-[#667781]">
@@ -304,13 +304,13 @@ export function IPhoneWhatsAppMockup() {
               </div>
             )}
 
-            {/* Balão de "Digitando..." animado aveludado */}
+            {/* Balão de "Digitando..." animado aveludado sem bounce */}
             {isTyping && (
-              <div className="flex justify-start motion-safe:animate-in motion-safe:fade-in motion-safe:duration-500">
-                <div className="bg-white text-[#111b21] rounded-lg rounded-tl-none px-3 py-2 shadow-xs flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-bounce [animation-delay:0ms] [animation-duration:1s]" />
-                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-bounce [animation-delay:200ms] [animation-duration:1s]" />
-                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-bounce [animation-delay:400ms] [animation-duration:1s]" />
+              <div className="flex justify-start animate-chat-bubble">
+                <div className="bg-white text-[#111b21] rounded-lg rounded-tl-none px-3 py-2 shadow-xs flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-typing-dot" />
+                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-typing-dot [animation-delay:200ms]" />
+                  <span className="w-1.5 h-1.5 bg-[#8696a0] rounded-full animate-typing-dot [animation-delay:400ms]" />
                 </div>
               </div>
             )}

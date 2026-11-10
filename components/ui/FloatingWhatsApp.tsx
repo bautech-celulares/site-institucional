@@ -154,10 +154,13 @@ export function FloatingWhatsApp() {
             {/* Balão de mensagem estilo WhatsApp com ponta lateral */}
             <div className="relative rounded-2xl rounded-tl-sm bg-white p-3.5 shadow-xs">
               {/* Ponta da fala apontando para o avatar */}
-              <div
+              <svg
                 aria-hidden="true"
-                className="absolute -top-1 -left-2 h-0 w-0 border-y-8 border-y-transparent border-r-8 border-r-white"
-              />
+                className="absolute -left-2 top-2 h-3 w-2 fill-white"
+                viewBox="0 0 8 12"
+              >
+                <path d="M8 0 L0 6 L8 12 Z" />
+              </svg>
 
               <p className="text-[13px] leading-[20px] text-brand-dark">
                 {status.isOpen

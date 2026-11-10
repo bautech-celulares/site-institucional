@@ -14,71 +14,54 @@ export function Footer() {
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-14 px-5 md:px-8 xl:px-0">
         {/* Banner CTA Final com Mockup de iPhone e WhatsApp */}
         <ScrollReveal>
-          <div className="flex flex-col items-center justify-between gap-8 rounded-[30px] bg-brand-blue p-6 sm:p-8 md:p-12 lg:flex-row lg:items-center lg:gap-14 shadow-xl shadow-brand-blue/15">
-            {/* No Desktop: Mockup do iPhone posicionado à ESQUERDA */}
-            <div className="hidden lg:flex shrink-0 justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-center gap-y-3.5 gap-x-12 lg:gap-x-14 rounded-[30px] bg-brand-blue p-6 sm:p-8 md:p-12 shadow-xl shadow-brand-blue/15 text-center lg:text-left">
+            {/* Mockup do iPhone: No Desktop fica à ESQUERDA (coluna 1). No Mobile fica entre o Badge e o Título (order-2) */}
+            <div className="order-2 lg:order-1 lg:col-start-1 lg:row-start-1 lg:row-span-6 flex shrink-0 justify-center my-3 lg:my-0">
               <IPhoneWhatsAppMockup />
             </div>
 
-            <div className="flex flex-1 flex-col gap-3.5 text-center lg:text-left w-full">
-              {/* Badge */}
-              <div className="inline-flex items-center justify-center lg:justify-start gap-1.5 text-xs font-bold uppercase tracking-wider text-[#99D5F9]">
+            {/* Badge: No Mobile é o 1º item (order-1). No Desktop fica no topo da coluna da direita */}
+            <div className="order-1 lg:order-2 lg:col-start-2 lg:row-start-1 flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#99D5F9]">
                 <span className="h-2 w-2 rounded-full bg-[#25D366] animate-pulse" />
                 Atendimento Rápido via WhatsApp
               </div>
-
-              {/* No Mobile: Mockup posicionado ACIMA do título e ABAIXO de 'Atendimento Rápido via WhatsApp' */}
-              <div className="flex lg:hidden justify-center my-2">
-                <IPhoneWhatsAppMockup />
-              </div>
-
-              {/* Título */}
-              <h2 className="font-mirano text-[26px] leading-[1.19] text-white sm:text-[32px] lg:text-[36px]">
-                Seu celular não precisa esperar
-              </h2>
-
-              {/* Subtítulo */}
-              <p className="text-[15px] leading-6 text-[#E0F0FA] max-w-[540px] mx-auto lg:mx-0">
-                Mande o modelo e o problema no WhatsApp e receba o valor e o prazo.
-                Atendemos de segunda a sábado, no Centro de São Bento do Sapucaí.
-              </p>
-
-              {/* Lista de diferenciais rápidos (peça sob encomenda) */}
-              <ul className="flex flex-col gap-2 text-sm text-[#E0F0FA] text-left mx-auto lg:mx-0 max-w-[420px] pt-1">
-                <li className="flex items-center gap-2">
-                  <span className="text-[#25D366] font-bold text-base">✓</span>
-                  Orçamento imediato e sem compromisso
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#25D366] font-bold text-base">✓</span>
-                  Peça sob encomenda para o seu modelo
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#25D366] font-bold text-base">✓</span>
-                  Garantia de 90 dias na tela e 60 dias na bateria
-                </li>
-              </ul>
-
-              {/* Botão no desktop fica aqui na coluna de texto */}
-              <div className="hidden lg:block pt-3">
-                <Button
-                  variant="white"
-                  icon={false}
-                  href={createWhatsAppUrl(WHATSAPP_INTENTS.footer)}
-                  className="shadow-lg hover:shadow-xl transition-all"
-                >
-                  Chamar a Bautech no WhatsApp
-                </Button>
-              </div>
             </div>
 
-            {/* Botão no mobile fica no final da sessão */}
-            <div className="block lg:hidden w-full sm:w-auto">
+            {/* Título: No Mobile fica abaixo do Mockup (order-3) */}
+            <h2 className="order-3 lg:order-3 lg:col-start-2 lg:row-start-2 font-mirano text-[26px] leading-[1.19] text-white sm:text-[32px] lg:text-[36px]">
+              Seu celular não precisa esperar
+            </h2>
+
+            {/* Subtítulo: order-4 */}
+            <p className="order-4 lg:order-4 lg:col-start-2 lg:row-start-3 text-[15px] leading-6 text-[#E0F0FA] max-w-[540px] mx-auto lg:mx-0">
+              Mande o modelo e o problema no WhatsApp e receba o valor e o prazo.
+              Atendemos de segunda a sábado, no Centro de São Bento do Sapucaí.
+            </p>
+
+            {/* Lista de diferenciais: order-5 */}
+            <ul className="order-5 lg:order-5 lg:col-start-2 lg:row-start-4 flex flex-col gap-2 text-sm text-[#E0F0FA] text-left mx-auto lg:mx-0 max-w-[420px] pt-1">
+              <li className="flex items-center gap-2">
+                <span className="text-[#25D366] font-bold text-base">✓</span>
+                Orçamento imediato e sem compromisso
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[#25D366] font-bold text-base">✓</span>
+                Peça sob encomenda para o seu modelo
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[#25D366] font-bold text-base">✓</span>
+                Garantia de 90 dias na tela e 60 dias na bateria
+              </li>
+            </ul>
+
+            {/* Botão CTA: order-6 */}
+            <div className="order-6 lg:order-6 lg:col-start-2 lg:row-start-5 flex justify-center lg:justify-start pt-2">
               <Button
                 variant="white"
                 icon={false}
                 href={createWhatsAppUrl(WHATSAPP_INTENTS.footer)}
-                className="w-full sm:w-auto shadow-lg"
+                className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
               >
                 Chamar a Bautech no WhatsApp
               </Button>
