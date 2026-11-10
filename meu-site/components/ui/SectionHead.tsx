@@ -21,12 +21,11 @@ export function SectionHead({
         {title}
       </h2>
       {ctaText && (
-        <Button
-          href={href}
-          className={cn(hideCtaOnMobile && "hidden md:inline-flex")}
-        >
-          {ctaText}
-        </Button>
+        <div className={cn(hideCtaOnMobile ? "hidden md:inline-flex" : "inline-flex")}>
+          <Button href={href}>
+            {ctaText}
+          </Button>
+        </div>
       )}
     </div>
   );

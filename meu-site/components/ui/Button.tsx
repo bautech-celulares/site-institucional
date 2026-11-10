@@ -1,6 +1,7 @@
 import React from "react";
 import { CONTACTS } from "@/data/content";
 import { WaIcon } from "./WaIcon";
+import { cn } from "@/lib/utils";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -37,7 +38,12 @@ export function Button({
       {...(isExternal
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className={`inline-flex items-center justify-center gap-1.5 rounded-full px-6 py-3.5 text-[15px] font-bold leading-[18px] transition-all hover:shadow-md hover:opacity-95 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 md:px-7 md:py-4 ${styles} ${widthClass} ${className}`}
+      className={cn(
+        "inline-flex items-center justify-center gap-1.5 rounded-full px-6 py-3.5 text-[15px] font-bold leading-[18px] transition-all hover:shadow-md hover:opacity-95 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 md:px-7 md:py-4",
+        styles,
+        widthClass,
+        className
+      )}
     >
       {icon && <WaIcon fill={variant === "cyan" ? "#302E2C" : "white"} />}
       <span>{children}</span>
