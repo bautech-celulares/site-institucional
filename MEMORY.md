@@ -107,32 +107,12 @@
 
 ## 3. Alterações realizadas
 
-- `meu-site/data/content.ts`: Sincronização definitiva dos contatos, endereços, redes sociais e orientações do passo a passo.
-- `meu-site/components/sections/HeroSection.tsx`: Ordem mobile com imagem no topo, micro-selo de atendimento em ~5 min e CTA com mensagem pré-formatada.
-- `meu-site/components/sections/ServicesSection.tsx`: Removidos botões demarcados; implementadas mensagens dedicadas para cada um dos 8 serviços cadastrados.
-- `meu-site/components/sections/HowItWorksSection.tsx`: Inserido `id="como-funciona"` com compensação de rolagem `scroll-mt-20` e botão com intenção clara.
-- `meu-site/components/sections/Footer.tsx`: Correção do link âncora para `#como-funciona`; links clicáveis para telefone, WhatsApp e redes sociais.
-- `meu-site/components/ui/FloatingWhatsApp.tsx`: Implementado controle de aparição pós-rolagem no mobile (`> 260px`); balão atualizado para "Técnico online"; beacon pulsante verde.
-- `meu-site/lib/storeStatus.ts` & `useStoreStatus.ts`: Módulo de cálculo de expediente comercial e hook reativo via `useSyncExternalStore`.
-- `meu-site/lib/whatsapp.ts`: Central de URLs inteligentes com codificação segura de mensagens.
-- `meu-site/app/not-found.tsx`: Página 404 customizada com atalhos para todas as seções e link de socorro via WhatsApp.
-- `meu-site/components/seo/StructuredData.tsx`: Injeção dos Schemas `ElectronicsRepairShop` e `FAQPage`.
-- `meu-site/app/global-error.tsx`: Página de captura de erro global com recuperação de página.
-- `meu-site/app/globals.css`: Adicionadas regras de animação `@keyframes marquee` e utilitário `.animate-marquee` com suporte a `prefers-reduced-motion`.
-- `meu-site/components/ui/testimonial-card.tsx`: Componente de card de depoimento adaptado sem avatar, com 5 estrelas em ciano, tipografia institucional e hover suave.
-- `meu-site/components/ui/testimonials-with-marquee.tsx`: Componente de marquee infinito contínuo e seção modular completa.
-- `meu-site/components/ui/testimonials-demo.tsx`: Componente de demonstração isolada da seção de depoimentos.
-- `meu-site/components/sections/ReviewsSection.tsx`: Integração da faixa de marquee na coluna direita ao lado do card oficial de nota 4,9 com 16 avaliações.
-- `meu-site/components/ui/sparkles.tsx`: Componente `SparklesCore` com suporte a `@tsparticles/react` e `framer-motion`.
-- `meu-site/components/ui/sparkles-demo.tsx`: Componentes de demonstração do efeito Sparkles (Acme, Dark e Colorful).
-- `meu-site/components/sections/WarrantySection.tsx`: Ordem mobile reestruturada (Imagem -> Título -> Subtítulo -> Cards com 60 dias de bateria -> Botão).
-- `meu-site/components/sections/AboutSection.tsx`: Ordem mobile reestruturada (Título -> Imagem -> Texto -> Botão).
-- `meu-site/components/sections/LocationSection.tsx`: Ordem mobile reestruturada (Título -> Imagem -> Texto -> Card -> Botão).
-- `meu-site/components/sections/ServicesSection.tsx`: Auto-slide sem loop no mobile (para ao final) e atualização de bateria para 60 dias.
-- `meu-site/components/sections/HowItWorksSection.tsx`: Botão posicionado no final da seção no mobile (`md:hidden`).
-- `meu-site/components/sections/DifferentialsSection.tsx`: Botão posicionado no final da seção no mobile (`md:hidden`).
-- `meu-site/data/content.ts` & `meu-site/lib/whatsapp.ts`: Atualizada a garantia oficial de troca de bateria para 60 dias.
-- `meu-site/next.config.ts`: Configuração com `cpus: 1` e `workerThreads: false` para builds estáveis no ambiente Windows.
+- **Reorganização Estrutural Unificada:** O projeto foi totalmente consolidado na raiz `bautech/`. As pastas legadas `meu-site/` e `_backup_antigravity_scaffold/` foram removidas permanentemente após o deploy bem-sucedido no Cloudflare Pages.
+- `app/`: Aplicação Next.js 16 App Router com exportação estática (`output: "export"`).
+- `data/content.ts`: Sincronização definitiva dos contatos, endereços, redes sociais, garantias e imagens servidas diretamente em WebP moderno via CDN.
+- `components/sections/`: Seções institucionais com otimizações mobile-first estritas, lazy loading de partículas em `WarrantySection` e acessibilidade WCAG AA em `ServicesSection`.
+- `components/ui/`: Componentes atômicos e interativos (CookieBanner LGPD, IPhoneWhatsAppMockup aveludado, FloatingWhatsApp com balão Joinchat, Marquee contínuo).
+- `public/`: Fontes pré-carregadas (`Metropolis`, `Mirano`), cabeçalhos de segurança Cloudflare (`_headers` com HSTS e COOP), metadados OpenGraph e manifest PWA.
 
 ---
 
