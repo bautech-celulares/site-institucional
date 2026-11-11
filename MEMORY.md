@@ -133,6 +133,7 @@
 - Reescrito o hook de horário com `useSyncExternalStore`, separando snapshot do servidor e cliente de forma nativa e sem re-renders desnecessários.
 - Adicionado listener de rolagem suave com `isScrolledPastHero` no `FloatingWhatsApp.tsx`, aplicando classes `opacity-0 pointer-events-none` no topo do mobile.
 - Unificação rigorosa de todos os dados cadastrais em `content.ts`, `PRODUCT.md` e no banco de dados do `claude-mem`.
+- **Simplificação e Eliminação de Código Morto (`refactor/simplify`):** Consolidado `TestimonialsMarquee.tsx` eliminando arquivos e blocos redundantes (`testimonial-card.tsx` e `testimonials-with-marquee.tsx`), unificado `StatusDot` no `Header.tsx`, e centralizado `CONTACTS.facebookUrl`.
 
 ---
 
