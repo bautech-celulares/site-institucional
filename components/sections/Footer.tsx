@@ -129,7 +129,7 @@ export function Footer() {
               Instagram {instagram}
             </a>
             <a
-              href="https://facebook.com/bautech.sbs"
+              href={CONTACTS.facebookUrl}
               target="_blank"
               rel="noreferrer"
               className="transition hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-sm"

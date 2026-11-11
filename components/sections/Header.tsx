@@ -6,6 +6,21 @@ import { WaIcon } from "@/components/ui/WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
+function StatusDot({ isOpen }: { isOpen: boolean }) {
+  return (
+    <span className="relative flex h-2 w-2">
+      {isOpen ? (
+        <>
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+        </>
+      ) : (
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-white/60" />
+      )}
+    </span>
+  );
+}
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const status = useStoreStatus();
@@ -47,16 +62,7 @@ export function Header() {
             rel="noreferrer"
             className="hidden items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-blue-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:inline-flex shadow-xs"
           >
-            <span className="relative flex h-2 w-2">
-              {status.isOpen ? (
-                <>
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </>
-              ) : (
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-white/60" />
-              )}
-            </span>
+            <StatusDot isOpen={status.isOpen} />
             <WaIcon size={16} />
             <span>Chamar no WhatsApp</span>
           </a>
@@ -104,16 +110,7 @@ export function Header() {
             onClick={() => setMobileMenuOpen(false)}
             className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-blue py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-brand-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
           >
-            <span className="relative flex h-2 w-2">
-              {status.isOpen ? (
-                <>
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </>
-              ) : (
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-white/60" />
-              )}
-            </span>
+            <StatusDot isOpen={status.isOpen} />
             <WaIcon size={18} />
             <span>Pedir orçamento no WhatsApp</span>
           </a>

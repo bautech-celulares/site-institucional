@@ -8,6 +8,7 @@ export const CONTACTS = {
   instagram: "@bautech_celulares",
   instagramUrl: "https://www.instagram.com/bautech_celulares/",
   facebook: "/bautech.sbs",
+  facebookUrl: "https://facebook.com/bautech.sbs",
   cnpj: "53.473.042/0001-06",
   address: {
     street: "R. Cândido José da Silva, 161",

@@ -17,10 +17,7 @@ let timer: ReturnType<typeof setInterval> | null = null;
 
 function subscribe(callback: () => void) {
   listeners.add(callback);
-
-  // Initialize status on client subscription
   currentStatus = getStoreStatus();
-  callback();
 
   if (!timer) {
     timer = setInterval(() => {

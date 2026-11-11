@@ -2,7 +2,7 @@ import React from "react";
 import { CONTACTS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { TestimonialsMarquee } from "@/components/ui/testimonials-with-marquee";
+import { TestimonialsMarquee } from "@/components/ui/TestimonialsMarquee";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
 
 const REVIEWS = [
