@@ -78,17 +78,6 @@ export function Header() {
             <span>Chamar no WhatsApp</span>
           </a>
 
-          {/* CTA compacto de WhatsApp (somente abaixo de sm, onde o botão completo some) */}
-          <a
-            href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 items-center gap-1.5 rounded-full bg-brand-blue px-4 text-sm font-bold text-white transition-[background-color,transform] hover:bg-brand-blue-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:hidden"
-          >
-            <WaIcon size={16} />
-            <span>WhatsApp</span>
-          </a>
-
           {/* Botão Menu Hambúrguer (Mobile) */}
           <button
             type="button"
@@ -117,7 +106,7 @@ export function Header() {
         data-open={mobileMenuOpen}
         className="mobile-menu border-t border-brand-border bg-white px-5 py-4 shadow-lg lg:hidden"
       >
-          <nav className="flex flex-col gap-3 pb-4">
+          <nav className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -129,17 +118,6 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <a
-            href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-blue py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-brand-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-          >
-            <StatusDot isOpen={status.isOpen} />
-            <WaIcon size={18} />
-            <span>Pedir orçamento no WhatsApp</span>
-          </a>
       </div>
     </header>
   );

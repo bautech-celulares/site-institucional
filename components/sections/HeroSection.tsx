@@ -6,7 +6,7 @@ import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
 export function HeroSection() {
   return (
-    <section className="pb-8 pt-10 md:pb-14 md:pt-[88px]">
+    <section className="py-10 md:py-[88px]">
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-end lg:gap-[60px] xl:px-0">
         {/* Bloco de Texto: no mobile fica depois da imagem (order-2), no desktop volta para a esquerda (lg:order-1) */}
         <div className="order-2 flex flex-1 flex-col items-start gap-5 md:gap-6 lg:order-1 motion-safe:animate-hero-fade-up anim-delay-100">

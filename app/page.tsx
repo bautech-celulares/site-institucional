@@ -1,6 +1,5 @@
 import { Header } from "@/components/sections/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustStrip } from "@/components/sections/TrustStrip";
 import { PainPointsSection } from "@/components/sections/PainPointsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <Header />
       <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
         <HeroSection />
-        <TrustStrip />
         <PainPointsSection />
         <ServicesSection />
         <HowItWorksSection />

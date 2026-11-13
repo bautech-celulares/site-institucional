@@ -18,8 +18,8 @@ export function StoreStatusLine() {
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-slate-400" />
         )}
       </span>
-      <span>
-        {status.isOpen ? "Balcão no Centro" : "Balcão fechado agora"} • {status.responseTime}
+      <span className="text-balance">
+        {status.isOpen ? "Loja no Centro • Resposta em até 5min" : `Loja fechada agora • ${status.responseTime}`}
       </span>
     </div>
   );
