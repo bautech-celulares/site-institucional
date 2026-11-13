@@ -31,6 +31,8 @@ export interface ServiceItem {
   title: string;
   description: string;
   imageId: string;
+  /** Prazo de garantia em dias (somente serviços de troca) */
+  warrantyDays?: number;
 }
 
 export const SERVICES: ServiceItem[] = [
@@ -39,18 +41,21 @@ export const SERVICES: ServiceItem[] = [
     description:
       "Tela trincada, com manchas ou sem resposta ao toque? Trocamos a tela e você segue com o mesmo aparelho, com 90 dias de garantia no serviço.",
     imageId: "fb0436a6acc5e3712bd4ab8b39b8e12930137a6f",
+    warrantyDays: 90,
   },
   {
     title: "Troca de bateria",
     description:
       "O celular descarrega rápido ou desliga sozinho? Com a bateria nova, ele volta a aguentar o dia inteiro. Serviço com 60 dias de garantia.",
     imageId: "baf7a708c5e0ff57ed95f0aac09c6841da22d732",
+    warrantyDays: 60,
   },
   {
     title: "Troca de conector",
     description:
       "O carregador não encaixa direito ou só carrega numa posição? Trocamos o conector de carga para você carregar sem malabarismo.",
     imageId: "ad4212104360b93141e087d5100b234cf86e5fbc",
+    warrantyDays: 30,
   },
   {
     title: "Acessórios para celular",
@@ -195,3 +200,64 @@ export const FAQS: FaqItem[] = [
   },
 ];
 
+
+export interface ReviewItem {
+  author: { name: string; handle?: string };
+  text: string;
+  stars: number;
+}
+
+const REVIEW_HANDLE = "Avaliação de 5 estrelas no Google";
+
+/**
+ * Avaliações reais do Perfil da Empresa no Google (trechos fiéis ao original,
+ * autores identificados por iniciais). Fonte: avaliacoes-positivas-bautech-google.md
+ */
+export const FEATURED_REVIEW: ReviewItem = {
+  author: { name: "Larissa R.", handle: REVIEW_HANDLE },
+  text: "Atendimento excelente e qualidade no trabalho, não troco por nada!",
+  stars: 5,
+};
+
+export const REVIEWS: ReviewItem[] = [
+  {
+    author: { name: "Josiane S.", handle: REVIEW_HANDLE },
+    text: "Sempre volto e indico a loja pela qualidade e variedade dos produtos e serviços oferecidos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Marcos M.", handle: REVIEW_HANDLE },
+    text: "Eu literalmente cresci com a Bautech, com a loja mudando de lugares e atendentes ao longo dos anos, e digo que sempre fui bem atendido por todos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Ana Maria D.", handle: REVIEW_HANDLE },
+    text: "Pontual aos horários de atendimento, com calma e atenção recebe seus clientes e resolve as necessidades dos mesmos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Francisco A.", handle: REVIEW_HANDLE },
+    text: "Seriedade e competência, melhor preço e garantia. Rapidez e qualidade. Recomendo.",
+    stars: 5,
+  },
+  {
+    author: { name: "Agnaldo A.", handle: REVIEW_HANDLE },
+    text: "Melhor lugar em São Bento do Sapucaí para comprar suplementos de celulares e serviços de impressão de papelaria.",
+    stars: 5,
+  },
+  {
+    author: { name: "Nabor L.", handle: REVIEW_HANDLE },
+    text: "A melhor de São Bento do Sapucaí! Agilidade e competência em 1000%.",
+    stars: 5,
+  },
+  {
+    author: { name: "Luiz M.", handle: REVIEW_HANDLE },
+    text: "Maravilhoso, atendimento perfeito e só produtos de qualidade!!! Recomendo muito!!!",
+    stars: 5,
+  },
+  {
+    author: { name: "Arnaldo M.", handle: REVIEW_HANDLE },
+    text: "Bom atendimento, e rapidez.",
+    stars: 5,
+  },
+];

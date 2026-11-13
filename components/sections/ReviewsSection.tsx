@@ -1,60 +1,9 @@
 import React from "react";
-import { CONTACTS } from "@/data/content";
+import { CONTACTS, FEATURED_REVIEW, REVIEWS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TestimonialsMarquee } from "@/components/ui/TestimonialsMarquee";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
-
-const REVIEWS = [
-  {
-    author: {
-      name: "L.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Pessoa atenciosa, serviço nota 10",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "Marcos M.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Eu literalmente cresci com a Bautech, com a loja mudando de lugares e atendentes ao longo dos anos, e digo que sempre fui bem atendido por todos.",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "Carlos S.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Atendimento excelente e qualidade no trabalho, não troco por nada!",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "Fernanda R.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Trocaram a tela do meu celular com agilidade e ficou perfeito. Aparelho novo de novo e com 90 dias de garantia.",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "Roberto S.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Ótimo atendimento no balcão e orçamento rápido pelo WhatsApp antes de eu sair de casa. Recomendo muito!",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "Juliana M.",
-      handle: "Avaliação de 5 estrelas no Google",
-    },
-    text: "Troquei a bateria do meu aparelho e agora aguenta o dia todo sem estresse. Honestidade e preço justo.",
-    stars: 5,
-  },
-];
 
 export function ReviewsSection() {
   const whatsappUrl = createWhatsAppUrl(
@@ -87,10 +36,10 @@ export function ReviewsSection() {
               Quem já foi atendido recomenda
             </h2>
             <p className="text-[20px] sm:text-[22px] font-bold leading-[31px] text-brand-blue">
-              “Atendimento excelente e qualidade no trabalho, não troco por nada!”
+              “{FEATURED_REVIEW.text}”
             </p>
             <p className="text-[13px] text-brand-muted">
-              Cliente, avaliação de 5 estrelas no Google
+              {FEATURED_REVIEW.author.name}, avaliação de 5 estrelas no Google
             </p>
           </div>
 

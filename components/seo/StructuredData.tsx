@@ -1,5 +1,5 @@
 import React from "react";
-import { CONTACTS, FAQS, getImageUrl } from "@/data/content";
+import { CONTACTS, FAQS, SERVICES, getImageUrl } from "@/data/content";
 
 export function StructuredData() {
   // Schema 1: LocalBusiness / ElectronicsRepairShop
@@ -8,7 +8,7 @@ export function StructuredData() {
     "@type": "ElectronicsRepairShop",
     name: "Bautech Assistência Técnica",
     description:
-      "Assistência técnica especializada em conserto de celulares, troca de tela e bateria com 90 dias de garantia no Centro de São Bento do Sapucaí - SP.",
+      "Assistência técnica de celulares no Centro de São Bento do Sapucaí - SP: troca de tela com 90 dias de garantia, troca de bateria com 60 dias e conector de carga com 30 dias.",
     image: getImageUrl("c97672a611c91e64da2aefc5c8d7838d8406c004", 1080),
     telephone: "+55-12-99153-5658",
     priceRange: "$$",
@@ -59,35 +59,16 @@ export function StructuredData() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Serviços de Reparo e Balcão",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Troca de tela com 90 dias de garantia",
-            description:
-              "Troca de tela frontal trincada, com manchas ou falha no touch, preservando dados do aparelho.",
-          },
+      itemListElement: SERVICES.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.warrantyDays
+            ? `${service.title} com ${service.warrantyDays} dias de garantia`
+            : service.title,
+          description: service.description,
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Troca de bateria com 90 dias de garantia",
-            description:
-              "Substituição de bateria viciada ou descarregando rápido por bateria nova com garantia formal.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Troca de conector de carga",
-            description:
-              "Reparo ou substituição de conector de carga que não carrega ou apresenta mau contato.",
-          },
-        },
-      ],
+      })),
     },
   };
 

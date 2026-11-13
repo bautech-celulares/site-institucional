@@ -101,21 +101,6 @@ export function ServicesSection() {
     }
   };
 
-  // Tags de garantia APENAS nos serviços de troca (tela, bateria, conector)
-  const getServiceBadge = (title: string) => {
-    const lower = title.toLowerCase();
-    if (lower.includes("troca de tela")) {
-      return "90 dias de garantia";
-    }
-    if (lower.includes("troca de bateria")) {
-      return "60 dias de garantia";
-    }
-    if (lower.includes("troca de conector")) {
-      return "30 dias de garantia";
-    }
-    return null; // Demais serviços sem tag
-  };
-
   return (
     <section id="servicos" className="scroll-mt-20 py-14 md:py-24">
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 px-5 md:gap-10 md:px-8 xl:px-0">
@@ -167,7 +152,10 @@ export function ServicesSection() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
           {SERVICES.map((service) => {
-            const badge = getServiceBadge(service.title);
+            // Tag de garantia apenas nos serviços de troca (tela, bateria, conector)
+            const badge = service.warrantyDays
+              ? `${service.warrantyDays} dias de garantia`
+              : null;
             const waMessage =
               WHATSAPP_INTENTS.services[service.title] ||
               `Olá! Gostaria de um orçamento para o serviço de ${service.title} na Bautech.`;
