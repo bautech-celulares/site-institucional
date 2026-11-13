@@ -2,8 +2,8 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { SERVICES, getImageUrl } from "@/data/content";
+import { ChevronLeft, ChevronRight } from "@/components/ui/icons";
+import { SERVICES } from "@/data/content";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
@@ -170,7 +170,7 @@ export function ServicesSection() {
                   {/* Imagem do Serviço (com tag somente se for serviço de troca) */}
                   <div className="relative h-[180px] sm:h-[155px] w-full overflow-hidden bg-slate-200">
                     <Image
-                      src={getImageUrl(service.imageId, 564)}
+                      src={service.image}
                       alt={service.title}
                       width={290}
                       height={180}

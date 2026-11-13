@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/icon-180.svg",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
   ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
@@ -71,14 +71,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning className="h-full motion-safe:scroll-smooth antialiased">
       <head>
-        <link rel="preconnect" href="https://cdn.builder.io" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.builder.io" />
-        <link
-          rel="preload"
-          as="image"
-          href="https://cdn.builder.io/api/v1/image/assets/TEMP/c97672a611c91e64da2aefc5c8d7838d8406c004?width=1080&format=webp&quality=80"
-          fetchPriority="high"
-        />
         <link
           rel="preload"
           href="/fonts/MiranoExtended-Bold.woff2"
@@ -96,6 +88,13 @@ export default function RootLayout({
         <link
           rel="preload"
           href="/fonts/Metropolis-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Metropolis-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

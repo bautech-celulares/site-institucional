@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { getImageUrl } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -8,14 +7,14 @@ export function AboutSection() {
   const aboutImage = (
     <div className="relative w-full">
       <Image
-        src={getImageUrl("e9857c5aabfd2ef05b1b5e84fb67217c6bcd5eaf", 960)}
+        src="tecnico-bautech-bancada"
         alt="Técnico da Bautech realizando manutenção de precisão em bancada com ferramentas especializadas"
         width={480}
         height={506}
         className="aspect-[480/506] w-full rounded-[26px] object-cover"
       />
       <div className="absolute bottom-6 left-6 flex w-[195px] flex-col justify-center gap-1 rounded-[20px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
-        <span className="text-[28px] font-extrabold leading-[31px] text-brand-blue">
+        <span className="text-[28px] font-bold leading-[31px] text-brand-blue">
           10+ anos
         </span>
         <span className="w-40 text-[13px] leading-[17px] text-brand-muted">

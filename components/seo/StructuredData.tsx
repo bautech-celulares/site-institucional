@@ -1,5 +1,5 @@
 import React from "react";
-import { CONTACTS, FAQS, SERVICES, getImageUrl } from "@/data/content";
+import { CONTACTS, FAQS, SERVICES, SITE_URL } from "@/data/content";
 
 export function StructuredData() {
   // Schema 1: LocalBusiness / ElectronicsRepairShop
@@ -9,7 +9,7 @@ export function StructuredData() {
     name: "Bautech Assistência Técnica",
     description:
       "Assistência técnica de celulares no Centro de São Bento do Sapucaí - SP: troca de tela com 90 dias de garantia, troca de bateria com 60 dias e conector de carga com 30 dias.",
-    image: getImageUrl("c97672a611c91e64da2aefc5c8d7838d8406c004", 1080),
+    image: `${SITE_URL}/img/celular-tela-trincada-540.webp`,
     telephone: "+55-12-99153-5658",
     priceRange: "$$",
     address: {

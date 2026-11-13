@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { CONTACTS, getImageUrl } from "@/data/content";
+import { CONTACTS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
@@ -10,7 +10,7 @@ export function LocationSection() {
 
   const locationImage = (
     <Image
-      src={getImageUrl("b97bfdb2b32e1ab574723cbcc4f4a3bb7181443d", 920)}
+      src="fachada-bautech-sao-bento-do-sapucai"
       alt="Fachada e atendimento do balcão da assistência técnica Bautech no Centro de São Bento do Sapucaí"
       width={460}
       height={569}

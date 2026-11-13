@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { getImageUrl } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
@@ -37,7 +36,7 @@ export function HeroSection() {
         {/* Imagem Hero com Selo Google: no mobile fica no topo antes do título (order-1), no desktop fica na direita (lg:order-2) */}
         <div className="order-1 relative w-full lg:order-2 lg:w-[540px] lg:shrink-0 motion-safe:animate-hero-fade-up">
           <Image
-            src={getImageUrl("c97672a611c91e64da2aefc5c8d7838d8406c004", 1080)}
+            src="celular-tela-trincada"
             alt="Smartphone com tela frontal severamente trincada segurado na mão pronto para reparo na Bautech"
             width={540}
             height={497}
@@ -48,7 +47,7 @@ export function HeroSection() {
           />
           <div className="absolute bottom-4 left-4 flex w-[185px] flex-col gap-0.5 rounded-[18px] bg-white p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:bottom-6 sm:left-6 sm:w-[202px] sm:gap-1 sm:rounded-[20px] sm:p-4 motion-safe:animate-hero-fade-up delay-200">
             <span className="text-sm text-brand-cyan sm:text-base">★★★★★</span>
-            <span className="text-[28px] font-extrabold leading-none text-brand-blue sm:text-[32px] sm:leading-[35px]">
+            <span className="text-[28px] font-bold leading-none text-brand-blue sm:text-[32px] sm:leading-[35px]">
               4,9
             </span>
             <span className="text-[12px] leading-tight text-brand-muted sm:text-[13px] sm:leading-[17px]">

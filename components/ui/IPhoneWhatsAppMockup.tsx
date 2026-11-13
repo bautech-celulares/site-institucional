@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useSyncExternalStore } from "react";
 import Image from "next/image";
-import { getImageUrl } from "@/data/content";
-import { Phone, Video, MoreVertical, Send, CheckCheck, Smile, Paperclip } from "lucide-react";
+import { Phone, Video, MoreVertical, Send, CheckCheck, Smile, Paperclip } from "@/components/ui/icons";
 
 function subscribeMotion() {
   return () => {};
@@ -190,7 +189,7 @@ export function IPhoneWhatsAppMockup() {
               {/* Foto de Perfil com Indicador Online */}
               <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-white/20 bg-slate-200">
                 <Image
-                  src={getImageUrl("e9857c5aabfd2ef05b1b5e84fb67217c6bcd5eaf", 80)}
+                  src="tecnico-bautech-bancada"
                   alt="Bautech Atendimento"
                   fill
                   className="object-cover"

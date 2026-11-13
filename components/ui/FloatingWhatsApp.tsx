@@ -5,7 +5,6 @@ import Image from "next/image";
 import { WaIcon } from "./WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
-import { getImageUrl } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 function subscribeTime() {
@@ -108,7 +107,7 @@ export function FloatingWhatsApp() {
               {/* Avatar circular do atendente com indicador */}
               <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-white/20 bg-emerald-950">
                 <Image
-                  src={getImageUrl("e9857c5aabfd2ef05b1b5e84fb67217c6bcd5eaf", 120)}
+                  src="tecnico-bautech-bancada"
                   alt="Técnico da Bautech"
                   width={44}
                   height={44}

@@ -1,3 +1,6 @@
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://bautech.com.br";
+
 export const CONTACTS = {
   phone: "(12) 99153-5658",
   whatsappUrl: "https://wa.me/5512991535658",
@@ -24,13 +27,11 @@ export const CONTACTS = {
   ],
 };
 
-export const getImageUrl = (id: string, width: number, format: string = "webp") =>
-  `https://cdn.builder.io/api/v1/image/assets/TEMP/${id}?width=${width}&format=${format}&quality=80`;
-
 export interface ServiceItem {
   title: string;
   description: string;
-  imageId: string;
+  /** Nome do arquivo em public/img (sem largura/extensão), ver scripts/optimize-images.mjs */
+  image: string;
   /** Prazo de garantia em dias (somente serviços de troca) */
   warrantyDays?: number;
 }
@@ -40,52 +41,52 @@ export const SERVICES: ServiceItem[] = [
     title: "Troca de tela",
     description:
       "Tela trincada, com manchas ou sem resposta ao toque? Trocamos a tela e você segue com o mesmo aparelho, com 90 dias de garantia no serviço.",
-    imageId: "fb0436a6acc5e3712bd4ab8b39b8e12930137a6f",
+    image: "troca-de-tela-celular",
     warrantyDays: 90,
   },
   {
     title: "Troca de bateria",
     description:
       "O celular descarrega rápido ou desliga sozinho? Com a bateria nova, ele volta a aguentar o dia inteiro. Serviço com 60 dias de garantia.",
-    imageId: "baf7a708c5e0ff57ed95f0aac09c6841da22d732",
+    image: "troca-de-bateria-celular",
     warrantyDays: 60,
   },
   {
     title: "Troca de conector",
     description:
       "O carregador não encaixa direito ou só carrega numa posição? Trocamos o conector de carga para você carregar sem malabarismo.",
-    imageId: "ad4212104360b93141e087d5100b234cf86e5fbc",
+    image: "troca-de-conector-de-carga",
     warrantyDays: 30,
   },
   {
     title: "Acessórios para celular",
     description:
       "Precisou de carregador, cabo ou outro acessório na correria? Você leva no mesmo balcão do conserto, sem precisar sair da cidade.",
-    imageId: "c8990d7625af08ba5a69669fecc7d07ae9aa7b51",
+    image: "acessorios-para-celular",
   },
   {
     title: "Acessórios para PC",
     description:
       "Acessórios para o seu computador ou notebook, direto no Centro de São Bento do Sapucaí. Pergunte pelo WhatsApp se temos o item que você precisa.",
-    imageId: "da6ce5f266f8638197a3ae3741e314a014e6682f",
+    image: "acessorios-para-pc",
   },
   {
     title: "Impressão e xérox",
     description:
       "Documentos, trabalhos escolares e cópias na hora, sem precisar ir longe. Imprima ou tire xérox no mesmo lugar do conserto do seu celular.",
-    imageId: "12bda0c708a14f25fa51fa1083f2927cdddae0dd",
+    image: "impressao-e-xerox",
   },
   {
     title: "Revelação de fotos",
     description:
       "Transforme as fotos do celular em lembranças impressas. Revelamos suas fotos aqui no Centro de São Bento do Sapucaí, de forma prática e rápida.",
-    imageId: "700c5ad895c3486801072ebdf9f0e4ea1e55e138",
+    image: "revelacao-de-fotos",
   },
   {
     title: "Venda e recarga",
     description:
       "Venda de produtos e recarga de celular no balcão da Bautech, de segunda a sábado. Resolva tudo em uma única parada, no Centro da cidade.",
-    imageId: "9b08164594913e6c138134cc4f936fb88a6dd60a",
+    image: "venda-e-recarga",
   },
 ];
 

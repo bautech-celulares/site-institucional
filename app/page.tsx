@@ -12,6 +12,7 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { CookieBanner } from "@/components/ui/CookieBanner";
+import { RevealController } from "@/components/ui/RevealController";
 
 export default function HomePage() {
   return (
@@ -32,6 +33,7 @@ export default function HomePage() {
       <Footer />
       <FloatingWhatsApp />
       <CookieBanner />
+      <RevealController />
     </div>
   );
 }

@@ -41,7 +41,7 @@ export function CookieBanner() {
         </svg>
 
         {/* Título */}
-        <h2 className="text-sm sm:text-base md:text-[17px] font-extrabold text-[#1a1a1a] tracking-tight">
+        <h2 className="text-sm sm:text-base md:text-[17px] font-bold text-[#1a1a1a] tracking-tight">
           Utilizamos cookies
         </h2>
 
