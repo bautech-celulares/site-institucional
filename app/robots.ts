@@ -1,16 +1,25 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/data/content";
 
 export const dynamic = "force-static";
 
-export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bautech.com.br";
+// Rastreadores de busca e de assistentes de IA liberados de forma explícita (GEO)
+const AI_CRAWLERS = [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "ClaudeBot",
+  "Claude-SearchBot",
+  "PerplexityBot",
+  "Google-Extended",
+];
 
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      { userAgent: "*", allow: "/" },
+      { userAgent: AI_CRAWLERS, allow: "/" },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }
-

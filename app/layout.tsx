@@ -2,21 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Analytics } from "@/components/ui/Analytics";
+import { SITE_URL } from "@/data/content";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://bautech.com.br"
-  ),
-  title: "Bautech | Assistência Técnica de Celular em São Bento do Sapucaí",
+  metadataBase: new URL(SITE_URL),
+  title: "Conserto de Celular em São Bento do Sapucaí | Bautech",
   description:
     "Troca de tela, bateria e conector de carga no Centro de São Bento do Sapucaí, com garantia de 90 dias na tela e 60 dias na bateria. Orçamento rápido pelo WhatsApp.",
-  keywords: [
-    "assistência técnica são bento do sapucaí",
-    "conserto de celular são bento do sapucaí",
-    "troca de tela celular",
-    "troca de bateria smartphone",
-    "bautech são bento do sapucaí",
-  ],
   alternates: {
     canonical: "/",
   },
@@ -33,7 +25,7 @@ export const metadata: Metadata = {
       }
     : {}),
   openGraph: {
-    title: "Bautech | Assistência Técnica de Celular em São Bento do Sapucaí",
+    title: "Conserto de Celular em São Bento do Sapucaí | Bautech",
     description:
       "Troca de tela, bateria e conector de carga no Centro de São Bento do Sapucaí, com garantia de 90 dias na tela e 60 dias na bateria.",
     url: "/",
@@ -52,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bautech | Assistência Técnica de Celular em São Bento do Sapucaí",
+    title: "Conserto de Celular em São Bento do Sapucaí | Bautech",
     description:
       "Troca de tela, bateria e conector de carga no Centro de São Bento do Sapucaí, com garantia de 90 dias na tela e 60 dias na bateria.",
     images: ["/og-image.png"],

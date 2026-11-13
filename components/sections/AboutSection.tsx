@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { CONTACTS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
@@ -53,6 +54,13 @@ export function AboutSection() {
               celular. É a nossa região presente em cada conserto.
             </p>
           </div>
+          <p className="rounded-[20px] bg-brand-surface p-5 text-[15px] leading-6 text-brand-dark">
+            <strong>Em resumo:</strong> a Bautech é uma assistência técnica de celulares no
+            Centro de São Bento do Sapucaí (SP), na {CONTACTS.address.street}. Atende de
+            segunda a sexta, das 9h às 18h, e aos sábados, das 9h30 às 12h. A troca de tela
+            tem 90 dias de garantia, a de bateria 60 dias e a de conector de carga 30 dias. O
+            orçamento sai pelo WhatsApp {CONTACTS.phone}.
+          </p>
           <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.about)}>Falar com a Bautech</Button>
         </ScrollReveal>
 

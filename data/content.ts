@@ -1,6 +1,9 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://bautech.com.br";
 
+/** Atualize ao alterar o conteúdo do site (usada como lastmod do sitemap). */
+export const CONTENT_UPDATED = "2026-11-13";
+
 export const CONTACTS = {
   phone: "(12) 99153-5658",
   whatsappUrl: "https://wa.me/5512991535658",
@@ -198,6 +201,21 @@ export const FAQS: FaqItem[] = [
     question: "Meu celular caiu na água. Tem conserto?",
     answer:
       "Depende do estado do aparelho. Desligue, não tente carregar e traga o quanto antes. A análise técnica mostra o que dá para fazer. Nesse caso, o serviço não tem garantia.",
+  },
+  {
+    question: "Onde consertar celular em São Bento do Sapucaí?",
+    answer:
+      "A Bautech fica na R. Cândido José da Silva, 161, no Centro de São Bento do Sapucaí (SP), CEP 12490-000. Antes de ir, mande o modelo e o problema pelo WhatsApp (12) 99153-5658 e receba o valor e o prazo.",
+  },
+  {
+    question: "Quais serviços a Bautech oferece?",
+    answer:
+      "Troca de tela, de bateria e de conector de carga, além de acessórios para celular e PC, impressão e xérox, revelação de fotos e venda e recarga de celular, tudo no mesmo balcão do Centro.",
+  },
+  {
+    question: "Qual o horário de atendimento?",
+    answer:
+      "De segunda a sexta, das 9h às 18h, e aos sábados, das 9h30 às 12h. Domingo a loja fica fechada. Mensagens enviadas fora do horário são respondidas assim que abrimos.",
   },
 ];
 
