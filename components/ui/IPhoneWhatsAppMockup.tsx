@@ -25,8 +25,10 @@ export function IPhoneWhatsAppMockup() {
   );
 
   // Estados dos passos da conversa (0 a 4)
-  // Se prefersReducedMotion estiver ativo, mostra todos diretamente (passo 4)
-  const [step, setStep] = useState(prefersReducedMotion ? 4 : 0);
+  const [animatedStep, setStep] = useState(0);
+  // Com movimento reduzido mostra a conversa completa, sem animar. Derivado em vez de
+  // useState inicial: na hidratacao o valor ainda e o do servidor (false) e travaria no passo 0.
+  const step = prefersReducedMotion ? 4 : animatedStep;
   const [isTyping, setIsTyping] = useState(false);
   const [inView, setInView] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -120,6 +122,7 @@ export function IPhoneWhatsAppMockup() {
     return () => {
       isMounted = false;
       timers.forEach(clearTimeout);
+      setIsTyping(false);
     };
   }, [prefersReducedMotion, inView]);
 
