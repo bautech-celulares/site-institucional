@@ -21,7 +21,7 @@ export function CookieBanner() {
   return (
     <aside
       aria-label="Aviso de Privacidade e Cookies"
-      className="fixed bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 md:left-7 md:bottom-7 md:translate-x-0 z-40 w-[90%] max-w-[360px] md:w-[320px] motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 duration-300"
+      className="fixed bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 md:left-7 md:bottom-7 md:translate-x-0 z-40 w-[90%] max-w-[360px] md:w-[320px] motion-safe:animate-cookie-in"
     >
       <div className="w-full bg-white flex flex-col items-center justify-center p-3.5 sm:p-4 md:p-6 gap-2 md:gap-3 relative rounded-2xl md:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-slate-200/90">
         {/* SVG Ícone do Cookie fiel ao layout fornecido, compacto no mobile */}
@@ -55,14 +55,14 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => handleConsent("accepted")}
-            className="w-[82px] sm:w-[88px] md:w-[92px] h-[28px] sm:h-[30px] md:h-[32px] bg-[#006CB3] hover:bg-[#005a96] text-white text-[11px] sm:text-xs font-bold rounded-full shadow-[0_4px_6px_-1px_rgba(0,108,179,0.25)] transition-all duration-200 active:scale-95 cursor-pointer"
+            className="w-[82px] sm:w-[88px] md:w-[92px] h-[28px] sm:h-[30px] md:h-[32px] bg-[#006CB3] hover:bg-[#005a96] text-white text-[11px] sm:text-xs font-bold rounded-full shadow-[0_4px_6px_-1px_rgba(0,108,179,0.25)] transition-[background-color,transform] duration-200 active:scale-95 cursor-pointer"
           >
             Permitir
           </button>
           <button
             type="button"
             onClick={() => handleConsent("declined")}
-            className="w-[82px] sm:w-[88px] md:w-[92px] h-[28px] sm:h-[30px] md:h-[32px] bg-[#e5e7eb] hover:bg-[#d1d5db] text-[#302e2c] text-[11px] sm:text-xs font-semibold rounded-full shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-all duration-200 active:scale-95 cursor-pointer"
+            className="w-[82px] sm:w-[88px] md:w-[92px] h-[28px] sm:h-[30px] md:h-[32px] bg-[#e5e7eb] hover:bg-[#d1d5db] text-[#302e2c] text-[11px] sm:text-xs font-semibold rounded-full shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-[background-color,transform] duration-200 active:scale-95 cursor-pointer"
           >
             Recusar
           </button>

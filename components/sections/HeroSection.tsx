@@ -8,7 +8,7 @@ export function HeroSection() {
     <section className="py-10 md:py-[88px]">
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-end lg:gap-[60px] xl:px-0">
         {/* Bloco de Texto: no mobile fica depois da imagem (order-2), no desktop volta para a esquerda (lg:order-1) */}
-        <div className="order-2 flex flex-1 flex-col items-start gap-5 md:gap-6 lg:order-1 motion-safe:animate-hero-fade-up delay-100">
+        <div className="order-2 flex flex-1 flex-col items-start gap-5 md:gap-6 lg:order-1 motion-safe:animate-hero-fade-up anim-delay-100">
           <h1 className="font-mirano text-[28px] leading-[1.16] tracking-tight sm:text-[34px] md:text-[44px]">
             Trincou a tela? Não precisa comprar outro celular.
           </h1>
@@ -34,7 +34,7 @@ export function HeroSection() {
         </div>
 
         {/* Imagem Hero com Selo Google: no mobile fica no topo antes do título (order-1), no desktop fica na direita (lg:order-2) */}
-        <div className="order-1 relative w-full lg:order-2 lg:w-[540px] lg:shrink-0 motion-safe:animate-hero-fade-up">
+        <div className="order-1 relative w-full lg:order-2 lg:w-[540px] lg:shrink-0">
           <Image
             src="celular-tela-trincada"
             alt="Smartphone com tela frontal severamente trincada segurado na mão pronto para reparo na Bautech"
@@ -45,7 +45,7 @@ export function HeroSection() {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 540px"
             className="aspect-[540/497] w-full rounded-[20px] object-cover sm:rounded-[26px]"
           />
-          <div className="absolute bottom-4 left-4 flex w-[185px] flex-col gap-0.5 rounded-[18px] bg-white p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:bottom-6 sm:left-6 sm:w-[202px] sm:gap-1 sm:rounded-[20px] sm:p-4 motion-safe:animate-hero-fade-up delay-200">
+          <div className="absolute bottom-4 left-4 flex w-[185px] flex-col gap-0.5 rounded-[18px] bg-white p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:bottom-6 sm:left-6 sm:w-[202px] sm:gap-1 sm:rounded-[20px] sm:p-4 motion-safe:animate-hero-fade-up anim-delay-200">
             <span className="text-sm text-brand-cyan sm:text-base">★★★★★</span>
             <span className="text-[28px] font-bold leading-none text-brand-blue sm:text-[32px] sm:leading-[35px]">
               4,9

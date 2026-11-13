@@ -48,7 +48,6 @@ export function ReviewsSection() {
             <TestimonialsMarquee
               testimonials={REVIEWS}
               duration="30s"
-              fadeColor="from-brand-surface"
             />
           </div>
 

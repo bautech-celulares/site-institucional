@@ -14,6 +14,82 @@
   --color-brand-muted: #595754;
   --color-brand-border: #CDD2D1;
   --color-brand-whatsapp: #25D366;
+
+  /* Movimento aveludado: curva expo-out suave, usada em todas as entradas */
+  --animate-hero-fade-up: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-hero-fade-in: heroFadeIn 0.5s ease-out both;
+  --animate-chat-bubble: chatBubbleIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-typing-dot: typingPulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  --animate-marquee: marquee var(--duration, 35s) linear infinite;
+  --animate-cookie-in: cookieIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes chatBubbleIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes typingPulse {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.85);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap, 1rem)));
+    }
+  }
+
+  @keyframes cookieIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Permite animar height: auto (FAQ) */
+:root {
+  interpolate-size: allow-keywords;
 }
 
 @font-face {
@@ -90,34 +166,6 @@ body {
   font-weight: 700;
 }
 
-@keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-hero-fade-up {
-  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-hero-fade-in {
-  animation: heroFadeIn 0.5s ease-out both;
-}
-
 /* Entrada ao rolar: o RevealController marca [data-reveal-hidden] só nos blocos abaixo da dobra */
 [data-reveal] {
   transition:
@@ -156,60 +204,78 @@ body {
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-100% - var(--gap, 1rem)));
-  }
-}
-
-.animate-marquee {
-  animation: marquee var(--duration, 35s) linear infinite;
-}
-
-/* Animações aveludadas para o Mockup do WhatsApp */
-@keyframes chatBubbleIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-chat-bubble {
-  animation: chatBubbleIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes typingPulse {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(0.85);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-}
-
-.animate-typing-dot {
-  animation: typingPulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.delay-100 {
+/* Atrasos de animação (nome próprio: .delay-* do Tailwind é transition-delay) */
+.anim-delay-100 {
   animation-delay: 100ms;
 }
 
-.delay-200 {
+.anim-delay-200 {
   animation-delay: 200ms;
 }
 
-.delay-300 {
+.anim-delay-300 {
   animation-delay: 300ms;
+}
+
+/* Marquee: bordas suaves por máscara (sem camadas de gradiente por cima dos cards) */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+
+/* Balão do WhatsApp e menu mobile: entrada e saída suaves (display animável via allow-discrete) */
+.wa-popover,
+.mobile-menu {
+  transition:
+    opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    display 0.3s allow-discrete;
+}
+
+.wa-popover {
+  transform-origin: bottom right;
+}
+
+.wa-popover[data-open="false"] {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+}
+
+.mobile-menu[data-open="false"] {
+  display: none;
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@starting-style {
+  .wa-popover[data-open="true"] {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  .mobile-menu[data-open="true"] {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* FAQ: abre e fecha deslizando (melhoria progressiva; sem suporte, abre direto) */
+@supports selector(::details-content) {
+  .faq-item::details-content {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease,
+      content-visibility 0.35s allow-discrete;
+  }
+
+  .faq-item[open]::details-content {
+    height: auto;
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -225,8 +291,15 @@ body {
     opacity: 0.45;
   }
 
+  .wa-popover,
+  .mobile-menu,
+  .faq-item::details-content {
+    transition: none !important;
+  }
+
   .animate-hero-fade-up,
   .animate-hero-fade-in,
+  .animate-cookie-in,
   .animate-marquee,
   .animate-chat-bubble,
   .animate-typing-dot {

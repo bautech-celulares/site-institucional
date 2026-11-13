@@ -88,18 +88,18 @@ export function FloatingWhatsApp() {
     <div
       ref={containerRef}
       className={cn(
-        "fixed bottom-5 right-5 z-50 flex flex-col items-end transition-all duration-300 md:bottom-7 md:right-7",
+        "fixed bottom-5 right-5 z-50 flex flex-col items-end transition-[opacity,transform] duration-300 md:bottom-7 md:right-7",
         isScrolledPastHero
           ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
           : "opacity-0 pointer-events-none translate-y-8 scale-90 md:opacity-100 md:pointer-events-auto md:translate-y-0 md:scale-100"
       )}
     >
       {/* Balão de atendimento estilo Joinchat */}
-      {isOpen && (
-        <div
+      <div
           role="dialog"
           aria-label="Atendimento Bautech no WhatsApp"
-          className="mb-3 w-[calc(100vw-32px)] max-w-[340px] overflow-hidden rounded-[22px] shadow-[0_16px_40px_rgba(0,0,0,0.24)] border border-black/10 animate-hero-fade-up sm:max-w-[360px]"
+          data-open={isOpen}
+          className="wa-popover mb-3 w-[calc(100vw-32px)] max-w-[340px] overflow-hidden rounded-[22px] shadow-[0_16px_40px_rgba(0,0,0,0.24)] border border-black/10 sm:max-w-[360px]"
         >
           {/* 1. Cabeçalho estilo WhatsApp / Joinchat */}
           <div className="flex items-center justify-between bg-[#0B5A4B] px-4 py-3.5 text-white">
@@ -180,7 +180,7 @@ export function FloatingWhatsApp() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all hover:bg-[#20ba5a] hover:shadow-[0_6px_20px_rgba(37,211,102,0.55)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-[background-color,box-shadow,transform] hover:bg-[#20ba5a] hover:shadow-[0_6px_20px_rgba(37,211,102,0.55)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
             >
               <span>Sim! Falar no WhatsApp.</span>
               <svg
@@ -193,7 +193,6 @@ export function FloatingWhatsApp() {
             </a>
           </div>
         </div>
-      )}
 
       {/* Botão Flutuante Circular com Toggle */}
       <button
@@ -205,7 +204,7 @@ export function FloatingWhatsApp() {
             ? "Fechar chat do WhatsApp"
             : "Abrir atendimento Bautech no WhatsApp"
         }
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_6px_22px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_8px_28px_rgba(37,211,102,0.65)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 focus-visible:ring-4 focus-visible:ring-[#25D366]/60 md:h-16 md:w-16"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_6px_22px_rgba(37,211,102,0.45)] transition-[transform,box-shadow] duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_8px_28px_rgba(37,211,102,0.65)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 focus-visible:ring-4 focus-visible:ring-[#25D366]/60 md:h-16 md:w-16"
       >
         {isOpen ? (
           <span className="text-2xl font-bold leading-none">&times;</span>

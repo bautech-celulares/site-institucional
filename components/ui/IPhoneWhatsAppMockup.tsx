@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useSyncExternalStore } from "react";
+import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { Phone, Video, MoreVertical, Send, CheckCheck, Smile, Paperclip } from "@/components/ui/icons";
 
@@ -28,9 +28,22 @@ export function IPhoneWhatsAppMockup() {
   // Se prefersReducedMotion estiver ativo, mostra todos diretamente (passo 4)
   const [step, setStep] = useState(prefersReducedMotion ? 4 : 0);
   const [isTyping, setIsTyping] = useState(false);
+  const [inView, setInView] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // So roda a simulacao enquanto o mockup esta visivel
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      threshold: 0.25,
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || !inView) {
       return;
     }
 
@@ -108,10 +121,11 @@ export function IPhoneWhatsAppMockup() {
       isMounted = false;
       timers.forEach(clearTimeout);
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, inView]);
 
   return (
     <div
+      ref={rootRef}
       aria-label="Simulação de conversa no WhatsApp com a Bautech"
       role="region"
       className="relative flex justify-center items-center py-2 select-none"

@@ -12,6 +12,7 @@ export function ServicesSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Verifica a possibilidade de rolar para atualizar os botões de seta com rAF
   const rafId = useRef<number | null>(null);
@@ -25,6 +26,7 @@ export function ServicesSection() {
         const { scrollLeft, scrollWidth, clientWidth } = container;
         setCanScrollLeft(scrollLeft > 5);
         setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
+        if (clientWidth > 0) setActiveIndex(Math.round(scrollLeft / (clientWidth + 16)));
       }
     });
   }, []);
@@ -47,43 +49,56 @@ export function ServicesSection() {
     };
   }, [checkScrollability]);
 
-  // Deslize automático no mobile (sem loop): avança suavemente e para ao atingir o final
+  // Deslize automatico no mobile (sem loop): so roda enquanto o carrossel esta na tela,
+  // avanca 1 card por vez e cessa ao fim do trilho ou ao primeiro toque do usuario
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const container = scrollContainerRef.current;
+    if (!container) return;
     const isMobile = window.innerWidth < 640;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!isMobile || prefersReducedMotion) return;
 
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    let stopped = false;
+    let intervalId: number | undefined;
 
-    let isInteracted = false;
-    const onUserInteraction = () => {
-      isInteracted = true;
+    const pause = () => {
+      window.clearInterval(intervalId);
+      intervalId = undefined;
     };
-
-    container.addEventListener("touchstart", onUserInteraction, { passive: true });
-    container.addEventListener("pointerdown", onUserInteraction, { passive: true });
-
-    const intervalId = setInterval(() => {
-      if (isInteracted) return;
+    const stop = () => {
+      stopped = true;
+      pause();
+    };
+    const tick = () => {
       const { scrollLeft, scrollWidth, clientWidth } = container;
-      // Ao alcançar o final do carrossel, cessa o avanço automático (não faz loop)
       if (scrollLeft >= scrollWidth - clientWidth - 15) {
-        clearInterval(intervalId);
+        stop();
         return;
       }
-      const cardWidth = clientWidth + 16;
-      container.scrollBy({
-        left: cardWidth,
-        behavior: "smooth",
-      });
-    }, 3800);
+      container.scrollBy({ left: clientWidth + 16, behavior: "smooth" });
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (stopped) return;
+        if (entry.isIntersecting) {
+          if (intervalId === undefined) intervalId = window.setInterval(tick, 3800);
+        } else {
+          pause();
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(container);
+
+    container.addEventListener("touchstart", stop, { passive: true });
+    container.addEventListener("pointerdown", stop, { passive: true });
 
     return () => {
-      clearInterval(intervalId);
-      container.removeEventListener("touchstart", onUserInteraction);
-      container.removeEventListener("pointerdown", onUserInteraction);
+      observer.disconnect();
+      pause();
+      container.removeEventListener("touchstart", stop);
+      container.removeEventListener("pointerdown", stop);
     };
   }, []);
 
@@ -124,7 +139,7 @@ export function ServicesSection() {
                 disabled={!canScrollLeft}
                 aria-label="Rolar para esquerda"
                 className={cn(
-                  "flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-white text-brand-blue shadow-sm transition-all duration-200 hover:bg-brand-surface hover:border-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                  "flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-white text-brand-blue shadow-sm transition-colors duration-200 hover:bg-brand-surface hover:border-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                 )}
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -135,7 +150,7 @@ export function ServicesSection() {
                 disabled={!canScrollRight}
                 aria-label="Rolar para direita"
                 className={cn(
-                  "flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-white text-brand-blue shadow-sm transition-all duration-200 hover:bg-brand-surface hover:border-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                  "flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-white text-brand-blue shadow-sm transition-colors duration-200 hover:bg-brand-surface hover:border-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                 )}
               >
                 <ChevronRight className="h-5 w-5" />
@@ -164,7 +179,7 @@ export function ServicesSection() {
             return (
               <article
                 key={service.title}
-                className="group flex-shrink-0 w-full sm:w-[280px] lg:w-[290px] snap-center sm:snap-start flex flex-col justify-between overflow-hidden rounded-[20px] bg-brand-surface transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                className="group flex-shrink-0 w-full sm:w-[280px] lg:w-[290px] snap-center sm:snap-start flex flex-col justify-between overflow-hidden rounded-[20px] bg-brand-surface transition-[transform,box-shadow] duration-300 hover:shadow-lg hover:-translate-y-1"
               >
                 <div>
                   {/* Imagem do Serviço (com tag somente se for serviço de troca) */}
@@ -213,6 +228,19 @@ export function ServicesSection() {
               </article>
             );
           })}
+          </div>
+
+          {/* Indicador de progresso (somente mobile, decorativo) */}
+          <div aria-hidden="true" className="flex justify-center gap-1.5 sm:hidden">
+            {SERVICES.map((service, i) => (
+              <span
+                key={service.title}
+                className={cn(
+                  "h-1.5 rounded-full transition-[width,background-color] duration-300",
+                  i === activeIndex ? "w-5 bg-brand-blue" : "w-1.5 bg-brand-border"
+                )}
+              />
+            ))}
           </div>
         </ScrollReveal>
       </div>

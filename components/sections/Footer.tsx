@@ -62,7 +62,7 @@ export function Footer() {
                 variant="white"
                 icon={false}
                 href={createWhatsAppUrl(WHATSAPP_INTENTS.footer)}
-                className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
+                className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-[box-shadow,background-color,transform]"
               >
                 Chamar a Bautech no WhatsApp
               </Button>

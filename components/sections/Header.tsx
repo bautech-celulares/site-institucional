@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { WaIcon } from "@/components/ui/WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
@@ -24,6 +24,16 @@ function StatusDot({ isOpen }: { isOpen: boolean }) {
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const status = useStoreStatus();
+
+  // Fecha o menu mobile com Escape
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: "Serviços", href: "#servicos" },
@@ -74,6 +84,7 @@ export function Header() {
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-dark transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 lg:hidden"
             aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
@@ -89,8 +100,11 @@ export function Header() {
       </div>
 
       {/* Gaveta de Navegação Mobile */}
-      {mobileMenuOpen && (
-        <div className="border-t border-brand-border bg-white px-5 py-4 shadow-lg lg:hidden">
+      <div
+        id="mobile-menu"
+        data-open={mobileMenuOpen}
+        className="mobile-menu border-t border-brand-border bg-white px-5 py-4 shadow-lg lg:hidden"
+      >
           <nav className="flex flex-col gap-3 pb-4">
             {navLinks.map((link) => (
               <a
@@ -114,8 +128,7 @@ export function Header() {
             <WaIcon size={18} />
             <span>Pedir orçamento no WhatsApp</span>
           </a>
-        </div>
-      )}
+      </div>
     </header>
   );
 }
