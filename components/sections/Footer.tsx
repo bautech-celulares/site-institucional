@@ -3,6 +3,7 @@ import { CONTACTS } from "@/data/content";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { CookiePreferences } from "@/components/ui/CookiePreferences";
 import { IPhoneWhatsAppMockup } from "@/components/ui/IPhoneWhatsAppMockup";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
@@ -115,7 +116,7 @@ export function Footer() {
             <a
               href={CONTACTS.whatsappUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-sm"
             >
               WhatsApp {phone}
@@ -123,7 +124,7 @@ export function Footer() {
             <a
               href={CONTACTS.instagramUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-sm"
             >
               Instagram {instagram}
@@ -131,7 +132,7 @@ export function Footer() {
             <a
               href={CONTACTS.facebookUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-sm"
             >
               Facebook {facebook}
@@ -139,9 +140,12 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="text-[13px] text-brand-muted">
-          © {new Date().getFullYear()} Bautech. CNPJ {cnpj}.
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-[13px] text-brand-muted">
+          <p>
+            © {new Date().getFullYear()} Bautech. CNPJ {cnpj}.
+          </p>
+          <CookiePreferences className="rounded-sm underline underline-offset-2 transition hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue" />
+        </div>
       </div>
     </footer>
   );

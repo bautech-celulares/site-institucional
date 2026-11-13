@@ -58,7 +58,7 @@ export function ReviewsSection() {
             <a
               href={CONTACTS.googleReviewsUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-[15px] font-bold text-brand-blue transition hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 rounded-md"
             >
               Ver as avaliações no Google

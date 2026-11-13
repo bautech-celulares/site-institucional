@@ -86,7 +86,7 @@ export function LocationSection() {
             <a
               href={createWhatsAppUrl(WHATSAPP_INTENTS.location)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-[15px] font-bold text-brand-blue transition hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 rounded-md"
             >
               Chamar no WhatsApp

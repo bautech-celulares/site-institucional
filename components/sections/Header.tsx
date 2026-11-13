@@ -59,7 +59,7 @@ export function Header() {
           <a
             href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-blue-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:inline-flex shadow-xs"
           >
             <StatusDot isOpen={status.isOpen} />
@@ -106,7 +106,7 @@ export function Header() {
           <a
             href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
             className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-blue py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-brand-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
           >

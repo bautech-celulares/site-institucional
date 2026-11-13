@@ -1,57 +1,26 @@
 "use client";
 
-import React, { useState, useSyncExternalStore } from "react";
-
-const STORAGE_KEY = "bautech_cookie_consent";
-
-function subscribeCookie(callback: () => void) {
-  if (typeof window === "undefined") return () => {};
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
-}
-
-function getClientConsent(): string | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function getServerConsent(): string | null {
-  return null;
-}
+import React, { useSyncExternalStore } from "react";
+import { getConsent, setConsent, useConsent } from "@/lib/consent";
 
 function subscribeMount() {
   return () => {};
 }
 
-function getClientMounted(): boolean {
-  return true;
-}
-
-function getServerMounted(): boolean {
-  return false;
-}
-
 export function CookieBanner() {
-  const [internalDismissed, setInternalDismissed] = useState(false);
-  const isMounted = useSyncExternalStore(subscribeMount, getClientMounted, getServerMounted);
-  const storedConsent = useSyncExternalStore(subscribeCookie, getClientConsent, getServerConsent);
+  const consent = useConsent();
+  // Só renderiza no cliente, depois da hidratação (o aviso depende do localStorage)
+  const isMounted = useSyncExternalStore(subscribeMount, () => true, () => false);
 
-  // Não renderiza no servidor, se já houver consentimento registrado ou se foi fechado nesta sessão
-  if (!isMounted || storedConsent !== null || internalDismissed) {
+  if (!isMounted || consent !== null) {
     return null;
   }
 
   const handleConsent = (choice: "accepted" | "declined") => {
-    try {
-      localStorage.setItem(STORAGE_KEY, choice);
-    } catch {
-      // Ignora erro se cookies/armazenamento local estiverem bloqueados pelo navegador
-    }
-    setInternalDismissed(true);
+    const hadAccepted = getConsent() === "accepted";
+    setConsent(choice);
+    // Se já havia permitido e agora recusa, recarrega para descarregar o GTM
+    if (hadAccepted && choice === "declined") window.location.reload();
   };
 
   return (
@@ -83,7 +52,7 @@ export function CookieBanner() {
 
         {/* Descrição LGPD */}
         <p className="text-center text-[11px] sm:text-[11.5px] md:text-[11px] font-medium text-[#636363] leading-snug md:leading-relaxed max-w-[95%]">
-          Utilizamos cookies essenciais para garantir o funcionamento do site e a melhor experiência de atendimento, em conformidade com a LGPD.
+          O site funciona sem cookies. Se você permitir, usamos o Google Tag Manager para medir visitas e melhorar o atendimento, conforme a LGPD. Você pode mudar de ideia a qualquer momento no rodapé.
         </p>
 
         {/* Botões de Ação */}
