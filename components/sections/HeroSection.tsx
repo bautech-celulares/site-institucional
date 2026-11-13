@@ -20,8 +20,11 @@ export function HeroSection() {
           <p className="text-[15px] font-medium text-brand-blue md:text-base">
             Mande o modelo e o problema no WhatsApp e receba o valor e o prazo.
           </p>
-          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}>
+          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-start xl:flex-row xl:items-center">
+            <Button
+              href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
+              className="shrink-0 max-[359px]:px-4 max-[359px]:text-sm sm:whitespace-nowrap"
+            >
               Pedir orçamento no WhatsApp
             </Button>
             <StoreStatusLine />
