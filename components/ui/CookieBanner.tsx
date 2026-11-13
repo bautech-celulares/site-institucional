@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useSyncExternalStore } from "react";
-import { getConsent, setConsent, useConsent } from "@/lib/consent";
+import { setConsent, useConsent } from "@/lib/consent";
 
 function subscribeMount() {
   return () => {};
@@ -16,12 +16,7 @@ export function CookieBanner() {
     return null;
   }
 
-  const handleConsent = (choice: "accepted" | "declined") => {
-    const hadAccepted = getConsent() === "accepted";
-    setConsent(choice);
-    // Se já havia permitido e agora recusa, recarrega para descarregar o GTM
-    if (hadAccepted && choice === "declined") window.location.reload();
-  };
+  const handleConsent = (choice: "accepted" | "declined") => setConsent(choice);
 
   return (
     <aside
