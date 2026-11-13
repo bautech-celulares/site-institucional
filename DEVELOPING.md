@@ -1,3 +1,5 @@
+> **LEGADO — NÃO SE APLICA A ESTE REPOSITÓRIO.** Este guia vem do template Builder.io/Agent-Native (React Router, Nitro, pnpm, SQL) e não descreve o site da Bautech, que é Next.js 16 estático. Use `README.md` e `AGENTS.md`.
+
 # app — Development Guide
 
 This guide is for development-mode agents editing this app's source code. For app operations and tools, see AGENTS.md.
