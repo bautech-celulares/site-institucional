@@ -34,12 +34,7 @@ export default function NotFound() {
       {/* Conteúdo Principal 404 */}
       <main className="flex flex-1 items-center justify-center py-12 md:py-20 px-5">
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center text-center">
-          {/* Badge 404 */}
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-surface px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-blue">
-            Erro 404
-          </span>
-
-          <h1 className="mt-4 font-mirano text-[28px] leading-[1.2] tracking-tight text-brand-dark sm:text-[38px] md:text-[44px]">
+          <h1 className="font-mirano text-[28px] leading-[1.2] tracking-tight text-brand-dark sm:text-[38px] md:text-[44px]">
             Essa página não está por aqui.
           </h1>
 

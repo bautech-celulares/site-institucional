@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useSyncExternalStore } from "react";
+import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
-import { getImageUrl } from "@/data/content";
-import { Phone, Video, MoreVertical, Send, CheckCheck, Smile, Paperclip } from "lucide-react";
+import { Phone, Video, MoreVertical, Send, CheckCheck, Smile, Paperclip } from "@/components/ui/icons";
 
 function subscribeMotion() {
   return () => {};
@@ -26,12 +25,27 @@ export function IPhoneWhatsAppMockup() {
   );
 
   // Estados dos passos da conversa (0 a 4)
-  // Se prefersReducedMotion estiver ativo, mostra todos diretamente (passo 4)
-  const [step, setStep] = useState(prefersReducedMotion ? 4 : 0);
+  const [animatedStep, setStep] = useState(0);
+  // Com movimento reduzido mostra a conversa completa, sem animar. Derivado em vez de
+  // useState inicial: na hidratacao o valor ainda e o do servidor (false) e travaria no passo 0.
+  const step = prefersReducedMotion ? 4 : animatedStep;
   const [isTyping, setIsTyping] = useState(false);
+  const [inView, setInView] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // So roda a simulacao enquanto o mockup esta visivel
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      threshold: 0.25,
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || !inView) {
       return;
     }
 
@@ -108,11 +122,13 @@ export function IPhoneWhatsAppMockup() {
     return () => {
       isMounted = false;
       timers.forEach(clearTimeout);
+      setIsTyping(false);
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, inView]);
 
   return (
     <div
+      ref={rootRef}
       aria-label="Simulação de conversa no WhatsApp com a Bautech"
       role="region"
       className="relative flex justify-center items-center py-2 select-none"
@@ -190,7 +206,7 @@ export function IPhoneWhatsAppMockup() {
               {/* Foto de Perfil com Indicador Online */}
               <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-white/20 bg-slate-200">
                 <Image
-                  src={getImageUrl("e9857c5aabfd2ef05b1b5e84fb67217c6bcd5eaf", 80)}
+                  src="tecnico-bautech-bancada"
                   alt="Bautech Atendimento"
                   fill
                   className="object-cover"

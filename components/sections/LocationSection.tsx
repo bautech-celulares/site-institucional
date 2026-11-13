@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { CONTACTS, getImageUrl } from "@/data/content";
+import { CONTACTS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
@@ -10,7 +10,7 @@ export function LocationSection() {
 
   const locationImage = (
     <Image
-      src={getImageUrl("b97bfdb2b32e1ab574723cbcc4f4a3bb7181443d", 920)}
+      src="fachada-bautech-sao-bento-do-sapucai"
       alt="Fachada e atendimento do balcão da assistência técnica Bautech no Centro de São Bento do Sapucaí"
       width={460}
       height={569}
@@ -86,7 +86,7 @@ export function LocationSection() {
             <a
               href={createWhatsAppUrl(WHATSAPP_INTENTS.location)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-[15px] font-bold text-brand-blue transition hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 rounded-md"
             >
               Chamar no WhatsApp

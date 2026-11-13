@@ -41,8 +41,9 @@ part of that build, not leave them as an empty template.
 - Product mode: `persuade`
 - Audience and cadence: locals of São Bento do Sapucaí needing a quick phone repair quote; one-visit landing page.
 - Visual world (name + the feeling it creates): friendly local tech shop, clean and trustworthy, WhatsApp-first.
-- Palette family + neutral undertone: Bautech blue #006CB3, cyan #00B1E2, pale blue #EAF5FB, warm charcoal #302E2C, WhatsApp green for step badges.
-- Type treatment: bold wide display headings (Montserrat standing in for Mirano Extended/Metropolis), regular body.
+- Palette family + neutral undertone: Bautech blue #006CB3, cyan #00B1E2, pale blue #EAF5FB, warm charcoal #302E2C, WhatsApp green #25D366 for step badges and chat; on dark `brand-on-dark` #CCD1D1, on blue `brand-on-blue` #E0F0FA; review stars in amber for contrast.
+- Type treatment: Mirano Extended Bold (`.font-mirano`) for display headings, Metropolis 400/500/700 for body (self-hosted woff2 in `public/fonts`, all four preloaded). Reading text never below 14px.
+- Motion: CSS only, `transform`/`opacity`, velvet curve `cubic-bezier(0.16, 1, 0.3, 1)`, tokens in `@theme`; `prefers-reduced-motion` always honored; the Hero image is never animated (LCP).
 - Composition: 1200px centered sections alternating white / pale blue, one dark guarantee band.
 - Shape language: pill buttons, 20-26px rounded cards and images.
 - Anti-references (defaults this app must not drift toward): gray SaaS dashboards, dark neon, stock-photo clutter.

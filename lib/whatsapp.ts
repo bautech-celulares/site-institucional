@@ -14,6 +14,12 @@ export const WHATSAPP_INTENTS = {
   // Chamada principal no Hero
   hero: `Olá! Gostaria de um orçamento para o conserto do meu celular na Bautech.\n\n📱 Modelo do aparelho:\n🔧 Problema apresentado:`,
 
+  // Seção "Quando o celular para"
+  painPoints: `Olá! Meu celular está com problema e gostaria de saber quanto custa o conserto na Bautech.\n\n📱 Modelo do aparelho:\n🔧 O que está acontecendo:`,
+
+  // Seção Sobre a Bautech
+  about: `Olá! Conheci a Bautech pelo site e gostaria de conversar sobre o meu aparelho.\n\n📱 Modelo:\n🔧 O que preciso:`,
+
   // Seção de Garantia
   warranty: `Olá! Vi no site que os serviços têm até 90 dias de garantia. Gostaria de um orçamento para o meu aparelho:\n\n📱 Modelo:\n🔧 Serviço necessário:`,
 

@@ -1,0 +1,47 @@
+{
+  "acessorios-para-celular": [
+    282
+  ],
+  "acessorios-para-pc": [
+    282
+  ],
+  "celular-tela-trincada": [
+    320,
+    540
+  ],
+  "cliente-preocupada-celular-com-defeito": [
+    320,
+    520
+  ],
+  "fachada-bautech-sao-bento-do-sapucai": [
+    320,
+    460
+  ],
+  "garantia-conserto-celular": [
+    320,
+    560
+  ],
+  "impressao-e-xerox": [
+    282
+  ],
+  "revelacao-de-fotos": [
+    282
+  ],
+  "tecnico-bautech-bancada": [
+    96,
+    240,
+    480
+  ],
+  "troca-de-bateria-celular": [
+    282
+  ],
+  "troca-de-conector-de-carga": [
+    282
+  ],
+  "troca-de-tela-celular": [
+    282
+  ],
+  "venda-e-recarga": [
+    282
+  ]
+}

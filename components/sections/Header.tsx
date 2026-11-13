@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { WaIcon } from "@/components/ui/WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
@@ -25,6 +26,16 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const status = useStoreStatus();
 
+  // Fecha o menu mobile com Escape
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { label: "Serviços", href: "#servicos" },
     { label: "Garantia", href: "#garantia" },
@@ -36,9 +47,9 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-brand-border bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-10 md:py-5 xl:px-[120px]">
         {/* Logo */}
-        <a href="#" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2" aria-label="Bautech - Início">
+        <Link href="/" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2" aria-label="Bautech - Início">
           <Logo className="h-8 w-auto md:h-10" />
-        </a>
+        </Link>
 
         {/* Navegação Desktop */}
         <nav className="hidden items-center gap-9 text-[15px] font-medium text-brand-dark lg:flex">
@@ -59,7 +70,7 @@ export function Header() {
           <a
             href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-blue-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:inline-flex shadow-xs"
           >
             <StatusDot isOpen={status.isOpen} />
@@ -71,9 +82,10 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-dark transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-brand-border text-brand-dark transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 lg:hidden"
             aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
@@ -89,9 +101,12 @@ export function Header() {
       </div>
 
       {/* Gaveta de Navegação Mobile */}
-      {mobileMenuOpen && (
-        <div className="border-t border-brand-border bg-white px-5 py-4 shadow-lg lg:hidden">
-          <nav className="flex flex-col gap-3 pb-4">
+      <div
+        id="mobile-menu"
+        data-open={mobileMenuOpen}
+        className="mobile-menu border-t border-brand-border bg-white px-5 py-4 shadow-lg lg:hidden"
+      >
+          <nav className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -103,19 +118,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <a
-            href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-blue py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-brand-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-          >
-            <StatusDot isOpen={status.isOpen} />
-            <WaIcon size={18} />
-            <span>Pedir orçamento no WhatsApp</span>
-          </a>
-        </div>
-      )}
+      </div>
     </header>
   );
 }

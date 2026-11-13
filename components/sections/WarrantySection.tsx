@@ -1,17 +1,10 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { WARRANTY_PERIODS, getImageUrl } from "@/data/content";
+import { WARRANTY_PERIODS } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SparklesCore } from "@/components/ui/sparkles";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
-
-const SparklesCore = dynamic(
-  () => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore),
-  { ssr: false }
-);
 
 export function WarrantySection() {
   return (
@@ -21,16 +14,7 @@ export function WarrantySection() {
     >
       {/* Background animado de partículas / Sparkles */}
       <div className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-hidden">
-        <SparklesCore
-          id="warranty-particles"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.8}
-          particleDensity={50}
-          className="h-full w-full"
-          particleColor="#00B1E2"
-          speed={0.6}
-        />
+        <SparklesCore className="absolute inset-0 h-full w-full" count={44} />
         {/* Gradientes sutis para garantir profundidade e contraste do texto */}
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-transparent to-brand-dark opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#302E2C_90%)] opacity-70" />
@@ -43,7 +27,7 @@ export function WarrantySection() {
           className="order-1 w-full lg:order-2 lg:w-[560px] lg:shrink-0"
         >
           <Image
-            src={getImageUrl("1658fab446473c69393f8ea6f69ec6985f079f44", 1120)}
+            src="garantia-conserto-celular"
             alt="Técnico manuseando placa de smartphone com certificado de garantia formal"
             width={560}
             height={420}
@@ -58,7 +42,7 @@ export function WarrantySection() {
           <h2 className="font-mirano text-[26px] leading-[1.2] tracking-tight text-white md:text-[34px]">
             Garantia por escrito em todo conserto
           </h2>
-          <p className="leading-[26px] text-[#CCD1D1]">
+          <p className="leading-[26px] text-brand-on-dark">
             Cada serviço sai com termo de garantia. A contagem do prazo começa
             quando o aparelho fica pronto para retirada.
           </p>
@@ -71,7 +55,7 @@ export function WarrantySection() {
                 <span className="text-2xl font-bold leading-[26px] text-brand-cyan">
                   {item.period}
                 </span>
-                <span className="text-xs leading-4 text-[#CCD1D1]">
+                <span className="text-sm leading-5 text-brand-on-dark">
                   {item.service}
                 </span>
               </div>

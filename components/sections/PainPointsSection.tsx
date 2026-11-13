@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { getImageUrl } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
 export function PainPointsSection() {
   return (
@@ -10,7 +10,7 @@ export function PainPointsSection() {
       <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 md:flex-row md:gap-20 md:px-8 xl:px-0">
         <ScrollReveal className="w-full md:w-[520px] md:shrink-0">
           <Image
-            src={getImageUrl("a56e14c064ddb7b0bcef40e4da30c33dbc3a3776", 1040)}
+            src="cliente-preocupada-celular-com-defeito"
             alt="Mulher preocupada olhando para o celular com defeito e segurando a cabeça"
             width={520}
             height={476}
@@ -37,7 +37,9 @@ export function PainPointsSection() {
               conserto. O orçamento é rápido e começa no WhatsApp.
             </p>
           </div>
-          <Button>Descobrir o valor do meu conserto</Button>
+          <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.painPoints)}>
+            Descobrir o valor do meu conserto
+          </Button>
         </ScrollReveal>
       </div>
     </section>

@@ -16,7 +16,7 @@ Prover uma presença digital de alta conversão (landing page institucional otim
 
 ## Positioning
 
-"Resolva o celular na cidade sem precisar descer a serra": Assistência técnica de confiança local com mais de 10 anos de tradição em São Bento do Sapucaí, proporcionando conserto rápido com peças de procedência, garantia de 90 dias nas trocas de tela e bateria, preservação absoluta das fotos e dados, e atendimento transparente pelo WhatsApp com quem realiza o reparo no balcão do centro da cidade.
+"Resolva o celular na cidade sem precisar descer a serra": Assistência técnica de confiança local com mais de 10 anos de tradição em São Bento do Sapucaí, proporcionando conserto rápido com peças de procedência, garantia de 90 dias na troca de tela e 60 dias na troca de bateria, preservação absoluta das fotos e dados, e atendimento transparente pelo WhatsApp com quem realiza o reparo no balcão do centro da cidade.
 
 ## Operating Context
 
@@ -26,7 +26,7 @@ Prover uma presença digital de alta conversão (landing page institucional otim
 
 ## Capabilities and Constraints
 
-- Serviços em destaque: Troca de tela (90 dias de garantia), Troca de bateria (90 dias de garantia), Troca de conector de carga (30 a 90 dias de garantia) e Acessórios homologados de balcão (cabos, carregadores rápidos, películas).
+- Serviços em destaque: Troca de tela (90 dias de garantia), Troca de bateria (60 dias de garantia), Troca de conector de carga (30 dias de garantia) e Acessórios homologados de balcão (cabos, carregadores rápidos, películas).
 - Garantia de integridade: Manutenções de tela e bateria preservam fotos, conversas de WhatsApp e contas bancárias, eliminando a principal objeção de perda de dados.
 - Sem formulários complexos: A experiência deve ser 100% orientada a acionar o WhatsApp em apenas 1 toque.
 
@@ -49,7 +49,7 @@ Prover uma presença digital de alta conversão (landing page institucional otim
 ## Product Principles
 
 1. **Agilidade em 1 Clique:** Quem está com celular quebrado tem urgência; cada seção e chamada para ação conduz direta e intuitivamente para o canal do WhatsApp.
-2. **Alívio Imediato das Objeções:** Deixar claro desde a primeira dobra que a troca de tela não apaga fotos nem conversas, e que os serviços contam com 90 dias de garantia formal.
+2. **Alívio Imediato das Objeções:** Deixar claro desde a primeira dobra que a troca de tela não apaga fotos nem conversas, e que os serviços contam com garantia formal por escrito (90 dias na tela, 60 na bateria, 30 nos demais).
 3. **Força e Credibilidade Local:** Salientar a conveniência e tranquilidade de resolver no centro de São Bento do Sapucaí com profissionais conhecidos, sem o custo e tempo de viagens até Taubaté ou Tremembé.
 4. **Clareza Sem Jargões:** Comunicação direta que explica exatamente o que será feito no aparelho, sem termos técnicos intimidadoramente complexos.
 

@@ -1,3 +1,9 @@
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://bautech.com.br";
+
+/** Atualize ao alterar o conteúdo do site (usada como lastmod do sitemap). */
+export const CONTENT_UPDATED = "2026-11-13";
+
 export const CONTACTS = {
   phone: "(12) 99153-5658",
   whatsappUrl: "https://wa.me/5512991535658",
@@ -24,13 +30,13 @@ export const CONTACTS = {
   ],
 };
 
-export const getImageUrl = (id: string, width: number, format: string = "webp") =>
-  `https://cdn.builder.io/api/v1/image/assets/TEMP/${id}?width=${width}&format=${format}&quality=80`;
-
 export interface ServiceItem {
   title: string;
   description: string;
-  imageId: string;
+  /** Nome do arquivo em public/img (sem largura/extensão), ver scripts/optimize-images.mjs */
+  image: string;
+  /** Prazo de garantia em dias (somente serviços de troca) */
+  warrantyDays?: number;
 }
 
 export const SERVICES: ServiceItem[] = [
@@ -38,49 +44,52 @@ export const SERVICES: ServiceItem[] = [
     title: "Troca de tela",
     description:
       "Tela trincada, com manchas ou sem resposta ao toque? Trocamos a tela e você segue com o mesmo aparelho, com 90 dias de garantia no serviço.",
-    imageId: "fb0436a6acc5e3712bd4ab8b39b8e12930137a6f",
+    image: "troca-de-tela-celular",
+    warrantyDays: 90,
   },
   {
     title: "Troca de bateria",
     description:
       "O celular descarrega rápido ou desliga sozinho? Com a bateria nova, ele volta a aguentar o dia inteiro. Serviço com 60 dias de garantia.",
-    imageId: "baf7a708c5e0ff57ed95f0aac09c6841da22d732",
+    image: "troca-de-bateria-celular",
+    warrantyDays: 60,
   },
   {
     title: "Troca de conector",
     description:
       "O carregador não encaixa direito ou só carrega numa posição? Trocamos o conector de carga para você carregar sem malabarismo.",
-    imageId: "ad4212104360b93141e087d5100b234cf86e5fbc",
+    image: "troca-de-conector-de-carga",
+    warrantyDays: 30,
   },
   {
     title: "Acessórios para celular",
     description:
       "Precisou de carregador, cabo ou outro acessório na correria? Você leva no mesmo balcão do conserto, sem precisar sair da cidade.",
-    imageId: "c8990d7625af08ba5a69669fecc7d07ae9aa7b51",
+    image: "acessorios-para-celular",
   },
   {
     title: "Acessórios para PC",
     description:
       "Acessórios para o seu computador ou notebook, direto no Centro de São Bento do Sapucaí. Pergunte pelo WhatsApp se temos o item que você precisa.",
-    imageId: "da6ce5f266f8638197a3ae3741e314a014e6682f",
+    image: "acessorios-para-pc",
   },
   {
     title: "Impressão e xérox",
     description:
       "Documentos, trabalhos escolares e cópias na hora, sem precisar ir longe. Imprima ou tire xérox no mesmo lugar do conserto do seu celular.",
-    imageId: "12bda0c708a14f25fa51fa1083f2927cdddae0dd",
+    image: "impressao-e-xerox",
   },
   {
     title: "Revelação de fotos",
     description:
       "Transforme as fotos do celular em lembranças impressas. Revelamos suas fotos aqui no Centro de São Bento do Sapucaí, de forma prática e rápida.",
-    imageId: "700c5ad895c3486801072ebdf9f0e4ea1e55e138",
+    image: "revelacao-de-fotos",
   },
   {
     title: "Venda e recarga",
     description:
       "Venda de produtos e recarga de celular no balcão da Bautech, de segunda a sábado. Resolva tudo em uma única parada, no Centro da cidade.",
-    imageId: "9b08164594913e6c138134cc4f936fb88a6dd60a",
+    image: "venda-e-recarga",
   },
 ];
 
@@ -193,5 +202,81 @@ export const FAQS: FaqItem[] = [
     answer:
       "Depende do estado do aparelho. Desligue, não tente carregar e traga o quanto antes. A análise técnica mostra o que dá para fazer. Nesse caso, o serviço não tem garantia.",
   },
+  {
+    question: "Onde consertar celular em São Bento do Sapucaí?",
+    answer:
+      "A Bautech fica na R. Cândido José da Silva, 161, no Centro de São Bento do Sapucaí (SP), CEP 12490-000. Antes de ir, mande o modelo e o problema pelo WhatsApp (12) 99153-5658 e receba o valor e o prazo.",
+  },
+  {
+    question: "Quais serviços a Bautech oferece?",
+    answer:
+      "Troca de tela, de bateria e de conector de carga, além de acessórios para celular e PC, impressão e xérox, revelação de fotos e venda e recarga de celular, tudo no mesmo balcão do Centro.",
+  },
+  {
+    question: "Qual o horário de atendimento?",
+    answer:
+      "De segunda a sexta, das 9h às 18h, e aos sábados, das 9h30 às 12h. Domingo a loja fica fechada. Mensagens enviadas fora do horário são respondidas assim que abrimos.",
+  },
 ];
 
+
+export interface ReviewItem {
+  author: { name: string; handle?: string };
+  text: string;
+  stars: number;
+}
+
+const REVIEW_HANDLE = "Avaliação de 5 estrelas no Google";
+
+/**
+ * Avaliações reais do Perfil da Empresa no Google (trechos fiéis ao original,
+ * autores identificados por iniciais). Fonte: avaliacoes-positivas-bautech-google.md
+ */
+export const FEATURED_REVIEW: ReviewItem = {
+  author: { name: "Larissa R.", handle: REVIEW_HANDLE },
+  text: "Atendimento excelente e qualidade no trabalho, não troco por nada!",
+  stars: 5,
+};
+
+export const REVIEWS: ReviewItem[] = [
+  {
+    author: { name: "Josiane S.", handle: REVIEW_HANDLE },
+    text: "Sempre volto e indico a loja pela qualidade e variedade dos produtos e serviços oferecidos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Marcos M.", handle: REVIEW_HANDLE },
+    text: "Eu literalmente cresci com a Bautech, com a loja mudando de lugares e atendentes ao longo dos anos, e digo que sempre fui bem atendido por todos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Ana Maria D.", handle: REVIEW_HANDLE },
+    text: "Pontual aos horários de atendimento, com calma e atenção recebe seus clientes e resolve as necessidades dos mesmos.",
+    stars: 5,
+  },
+  {
+    author: { name: "Francisco A.", handle: REVIEW_HANDLE },
+    text: "Seriedade e competência, melhor preço e garantia. Rapidez e qualidade. Recomendo.",
+    stars: 5,
+  },
+  {
+    author: { name: "Agnaldo A.", handle: REVIEW_HANDLE },
+    text: "Melhor lugar em São Bento do Sapucaí para comprar suplementos de celulares e serviços de impressão de papelaria.",
+    stars: 5,
+  },
+  {
+    author: { name: "Nabor L.", handle: REVIEW_HANDLE },
+    text: "A melhor de São Bento do Sapucaí! Agilidade e competência em 1000%.",
+    stars: 5,
+  },
+  {
+    author: { name: "Luiz M.", handle: REVIEW_HANDLE },
+    text: "Maravilhoso, atendimento perfeito e só produtos de qualidade!!! Recomendo muito!!!",
+    stars: 5,
+  },
+  {
+    author: { name: "Arnaldo M.", handle: REVIEW_HANDLE },
+    text: "Bom atendimento, e rapidez.",
+    stars: 5,
+  },
+];

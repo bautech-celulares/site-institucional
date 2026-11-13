@@ -29,7 +29,7 @@ export function TestimonialCard({
       className={cn(
         "flex flex-col justify-between rounded-[20px] bg-white p-5 text-start shadow-sm border border-brand-border/40",
         "w-[280px] sm:w-[320px] shrink-0 select-none",
-        "transition-all duration-300 hover:shadow-md hover:border-brand-blue/30",
+        "transition-[box-shadow,border-color] duration-300 hover:shadow-md hover:border-brand-blue/30",
         href && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
         className
       )}
@@ -37,12 +37,12 @@ export function TestimonialCard({
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-2">
           <div
-            className="flex text-sm text-brand-cyan tracking-wide"
+            className="flex text-sm text-amber-500 tracking-wide"
             aria-label={`${stars} de 5 estrelas`}
           >
             {"★".repeat(Math.max(1, Math.min(5, stars)))}
           </div>
-          <span className="text-[11px] font-medium text-brand-muted/70">
+          <span className="text-[13px] font-medium text-brand-muted">
             Google
           </span>
         </div>
@@ -57,11 +57,11 @@ export function TestimonialCard({
           {author.name.charAt(0)}
         </div>
         <div className="flex flex-col leading-tight min-w-0">
-          <span className="text-xs font-bold text-brand-dark truncate">
+          <span className="text-sm font-bold text-brand-dark truncate">
             {author.name}
           </span>
           {author.handle && (
-            <span className="text-[11px] text-brand-muted truncate">
+            <span className="text-[13px] text-brand-muted truncate">
               {author.handle}
             </span>
           )}
@@ -74,14 +74,12 @@ export function TestimonialCard({
 export interface TestimonialsMarqueeProps {
   testimonials: TestimonialItem[];
   duration?: string;
-  fadeColor?: string;
   className?: string;
 }
 
 export function TestimonialsMarquee({
   testimonials,
   duration = "35s",
-  fadeColor = "from-brand-surface",
   className,
 }: TestimonialsMarqueeProps) {
   if (!testimonials || testimonials.length === 0) return null;
@@ -89,12 +87,12 @@ export function TestimonialsMarquee({
   return (
     <div
       className={cn(
-        "group relative flex w-full overflow-hidden select-none",
+        "group marquee-mask relative flex w-full overflow-hidden select-none",
         className
       )}
       style={{ "--duration": duration } as React.CSSProperties}
     >
-      <div className="flex shrink-0 gap-4 animate-marquee group-hover:[animation-play-state:paused]">
+      <div className="flex shrink-0 gap-4 animate-marquee will-change-transform group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] group-active:[animation-play-state:paused]">
         {testimonials.map((testimonial, i) => (
           <TestimonialCard
             key={`track1-${testimonial.author.name}-${i}`}
@@ -105,7 +103,7 @@ export function TestimonialsMarquee({
 
       <div
         aria-hidden="true"
-        className="flex shrink-0 gap-4 animate-marquee group-hover:[animation-play-state:paused]"
+        className="flex shrink-0 gap-4 animate-marquee will-change-transform group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] group-active:[animation-play-state:paused]"
       >
         {testimonials.map((testimonial, i) => (
           <TestimonialCard
@@ -114,21 +112,6 @@ export function TestimonialsMarquee({
           />
         ))}
       </div>
-
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-16 bg-gradient-to-r to-transparent",
-          fadeColor
-        )}
-      />
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l to-transparent",
-          fadeColor
-        )}
-      />
     </div>
   );
 }

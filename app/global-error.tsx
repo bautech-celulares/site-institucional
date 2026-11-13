@@ -28,7 +28,7 @@ export default function GlobalError({
             <a
               href={CONTACTS.whatsappUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="rounded-full border border-[#006CB3] px-5 py-2.5 text-sm font-bold text-[#006CB3] transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006CB3]"
             >
               Chamar no WhatsApp

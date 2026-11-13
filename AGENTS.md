@@ -1,45 +1,31 @@
-# App — Agent Guide
+# Bautech — Guia para agentes
 
-This starter ships as a blank Agent-Native app canvas — that describes its
-initial state, not necessarily its current one. See `DEVELOPING.md` before
-making any source code change.
+Site institucional estático (landing page) da Bautech Assistência Técnica: Next.js 16 (App Router, `output: "export"`), React 19, Tailwind 4, hospedado no Cloudflare Pages. Sem backend, banco de dados, login nem agente para o usuário final (ver `DECISIONS.md`).
 
-## Skills
+> **Legado que NÃO se aplica:** este repositório nasceu de um template Builder.io/Agent-Native. O que esse template descreve (pnpm, actions, SQL, agent rail, React Router, `pnpm agent-native:doctor`, `DEVELOPING.md`, `.agents/skills/`) não corresponde ao projeto. Ignore essas instruções.
 
-Search with `rg --hidden --follow`; read the exact linked guide before deeper work. `.agents/skills/build-an-app/SKILL.md` — start here for vague requests to create a domain app. `.agents/skills/adding-a-feature/SKILL.md` — cross-area feature checklist. Data/integrations: `.agents/skills/actions/SKILL.md`, `.agents/skills/storing-data/SKILL.md`, `.agents/skills/security/SKILL.md`, `.agents/skills/secrets/SKILL.md`, `.agents/skills/sharing/SKILL.md`. UI: `.agents/skills/frontend-design/SKILL.md`, `.agents/skills/shadcn-ui/SKILL.md`, `.agents/skills/client-side-routing/SKILL.md`. Agent context/workflows: `.agents/skills/context-awareness/SKILL.md`, `.agents/skills/real-time-sync/SKILL.md`, `.agents/skills/reliable-mutations/SKILL.md`, `.agents/skills/performance/SKILL.md`, `.agents/skills/delegate-to-agent/SKILL.md`. Framework: `.agents/skills/agent-native-docs/SKILL.md`, `.agents/skills/agent-native-toolkit/SKILL.md`, `.agents/skills/customizing-agent-native/SKILL.md`.
+## Leia antes de mexer
 
-Use local docs only (no web research): `pnpm action docs-search --query "<topic>"`, `pnpm action docs-search --slug "<slug>"`, `pnpm action docs-search --list`, `pnpm action source-search --query "<pattern>"`, `pnpm action source-search --path <path>`, or `pnpm action source-search --list`. For external-agent integrations, read `pnpm action docs-search --slug "external-agents"`.
+- `MEMORY.md`: decisões aprovadas e rejeitadas, dados inegociáveis, pendências.
+- `PRODUCT.md` (público e princípios) e `DESIGN.md` (direção visual).
 
-This repo is a single standalone app (`agent-native.scaffold.shape:
-"standalone"`), not a workspace root. If the user asks for a workspace, a
-platform or suite of apps, a second app, an app shell or launcher, or Dispatch,
-read the `multi-app-workspace` skill before touching the repo layout.
+## Comandos e verificação
 
-## Core rules
+- `npm run dev`, `npm run build` (gera `out/`), `npm run lint`, `npx tsc --noEmit`.
+- Imagens: coloque o PNG original em `scripts/image-sources/` e rode `node scripts/optimize-images.mjs`. Ícones: `node scripts/generate-icons.mjs`.
+- Depois de editar: tipos, lint e build sem erros. Para mudanças visuais ou de interação, confira em navegador (captura de tela) em mobile (390px) e desktop (1280px); o `next dev` pode manter abas antigas, recarregue com Ctrl+Shift+R.
 
-- UI feedback: target 100 ms, never exceed 400 ms; acknowledge before network work.
-- Normal app data must flow through actions. Keep actions deterministic and focused; use agent chat/AgentSidebar for AI work and follow-ups in the same thread. Keep structured state in SQL and large files in configured storage; persist references only.
-- For external integrations, inspect the workspace/provider connection catalog first; reuse its scoped resolver. Never hardcode credentials, webhook URLs, or private/customer data.
-- Never fabricate. Report failures and recover; verify writes by reading the row or screen. Navigation is in `<current-screen>`; use `view-screen` for fresh visible-record details.
+## Regras do projeto
 
-For custom branding, keep `server/plugins/agent-native-email-branding.ts` aligned: `app.name` appears in transactional email and optional `app.logoUrl` must be an absolute HTTPS URL.
-
-## Application state
-
-- `navigation` describes the view and selected ids. The default home view is
-  `home` at `/` (blank app canvas). No agent rail or chat is mounted by
-  default; add one only when the user asks.
-- Use `navigate` when supported and `view-screen` for a fresh read of visible details; basic navigation is already in `<current-screen>`.
-
-## Building a domain app
-
-Choose the primary workflow and route before editing. Build on the blank canvas in `app/routes/_index.tsx` or add domain routes under `app/routes/`. This starter has no Chat route, sidebar, header, or agent rail; add only the navigation the product needs. Set `app.homePath` in the existing `defineAppConfig` in `server/plugins/config.ts` as `DEVELOPING.md` describes.
-
-Use `adding-a-feature` for functional parity and `frontend-design` for a user-facing screen. Keep feature guidance here and update `README.md` as `DEVELOPING.md` describes. After all edits, run one typecheck, one doctor check, and one browser smoke of the primary workflow and its authenticated landing. Skip production build and extra test suites.
-
-Before building common workspace or agent UI, read `agent-native-toolkit`; for supported customization, read `customizing-agent-native`.
-
-- Guarded verification: run `pnpm agent-native:doctor`; fix findings before done.
+- **Dados oficiais** (endereço, telefone, garantias, horários) só em `data/content.ts`; derive de lá (selos, JSON-LD, textos). Garantias: tela 90, bateria 60, conector e demais 30 dias.
+- **Ordem mobile aprovada** por seção (ver `MEMORY.md`): desktop deve permanecer intacto. O menu mobile não tem botões de WhatsApp e o Hero não tem faixa de informações (decisões do usuário).
+- **Depoimentos** apenas reais (Google), com iniciais. Não inventar avaliações, números ou prazos. Não usar `review[]` no JSON-LD.
+- **JSON-LD** com tipos válidos do schema.org (`ElectronicsRepairShop` não existe; usamos `MobilePhoneStore`).
+- **Imagens** sempre locais (`public/img`, via `next/image` e `lib/imageLoader.ts`); nunca hotlink de CDN de terceiros.
+- **Terceiros e cookies:** nenhum script externo fora de `components/ui/Analytics.tsx`, e só após consentimento (`lib/consent.ts`). Toda nova origem precisa entrar na CSP em `public/_headers`.
+- **Animações:** CSS nativo, apenas `transform`/`opacity`, tokens em `@theme` (`app/globals.css`), respeitando `prefers-reduced-motion`. Não animar a imagem do Hero (LCP).
+- **Design:** usar tokens (`brand-*`) em vez de hex; textos de leitura >= 14px; alvos de toque >= 44px; sem kickers em caixa alta acima de `h1`/`h2`; contraste WCAG AA.
+- **WhatsApp:** toda chamada usa `createWhatsAppUrl(WHATSAPP_INTENTS.*)` (`lib/whatsapp.ts`).
 
 ## Minimalismo & Eficiência (Diretriz Ponytail)
 
