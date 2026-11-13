@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { StoreStatusLine } from "@/components/ui/StoreStatusLine";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
 export function HeroSection() {
   return (
-    <section className="py-10 md:py-[88px]">
+    <section className="pb-8 pt-10 md:pb-14 md:pt-[88px]">
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-end lg:gap-[60px] xl:px-0">
         {/* Bloco de Texto: no mobile fica depois da imagem (order-2), no desktop volta para a esquerda (lg:order-1) */}
         <div className="order-2 flex flex-1 flex-col items-start gap-5 md:gap-6 lg:order-1 motion-safe:animate-hero-fade-up anim-delay-100">
@@ -23,13 +24,7 @@ export function HeroSection() {
             <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}>
               Pedir orçamento no WhatsApp
             </Button>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-muted">
-              <span className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              </span>
-              <span>Balcão no Centro • Resposta em ~5 min</span>
-            </div>
+            <StoreStatusLine />
           </div>
         </div>
 
@@ -45,12 +40,12 @@ export function HeroSection() {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 540px"
             className="aspect-[540/497] w-full rounded-[20px] object-cover sm:rounded-[26px]"
           />
-          <div className="absolute bottom-4 left-4 flex w-[185px] flex-col gap-0.5 rounded-[18px] bg-white p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:bottom-6 sm:left-6 sm:w-[202px] sm:gap-1 sm:rounded-[20px] sm:p-4 motion-safe:animate-hero-fade-up anim-delay-200">
-            <span className="text-sm text-brand-cyan sm:text-base">★★★★★</span>
+          <div className="absolute bottom-4 left-4 flex w-[200px] flex-col gap-0.5 rounded-[18px] bg-white p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:bottom-6 sm:left-6 sm:w-[220px] sm:gap-1 sm:rounded-[20px] sm:p-4 motion-safe:animate-hero-fade-up anim-delay-200">
+            <span className="text-sm text-amber-500 sm:text-base">★★★★★</span>
             <span className="text-[28px] font-bold leading-none text-brand-blue sm:text-[32px] sm:leading-[35px]">
               4,9
             </span>
-            <span className="text-[12px] leading-tight text-brand-muted sm:text-[13px] sm:leading-[17px]">
+            <span className="text-[13px] leading-tight text-brand-muted sm:text-sm sm:leading-[18px]">
               nota no Google, com 16 avaliações
             </span>
           </div>

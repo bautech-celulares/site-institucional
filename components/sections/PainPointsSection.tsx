@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
 export function PainPointsSection() {
   return (
@@ -36,7 +37,9 @@ export function PainPointsSection() {
               conserto. O orçamento é rápido e começa no WhatsApp.
             </p>
           </div>
-          <Button>Descobrir o valor do meu conserto</Button>
+          <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.painPoints)}>
+            Descobrir o valor do meu conserto
+          </Button>
         </ScrollReveal>
       </div>
     </section>

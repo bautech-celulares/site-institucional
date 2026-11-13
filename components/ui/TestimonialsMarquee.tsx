@@ -37,12 +37,12 @@ export function TestimonialCard({
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-2">
           <div
-            className="flex text-sm text-brand-cyan tracking-wide"
+            className="flex text-sm text-amber-500 tracking-wide"
             aria-label={`${stars} de 5 estrelas`}
           >
             {"★".repeat(Math.max(1, Math.min(5, stars)))}
           </div>
-          <span className="text-[11px] font-medium text-brand-muted/70">
+          <span className="text-[13px] font-medium text-brand-muted">
             Google
           </span>
         </div>
@@ -57,11 +57,11 @@ export function TestimonialCard({
           {author.name.charAt(0)}
         </div>
         <div className="flex flex-col leading-tight min-w-0">
-          <span className="text-xs font-bold text-brand-dark truncate">
+          <span className="text-sm font-bold text-brand-dark truncate">
             {author.name}
           </span>
           {author.handle && (
-            <span className="text-[11px] text-brand-muted truncate">
+            <span className="text-[13px] text-brand-muted truncate">
               {author.handle}
             </span>
           )}

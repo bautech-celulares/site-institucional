@@ -22,8 +22,8 @@ export function Button({
 }: ButtonProps) {
   const styles = {
     blue: "bg-brand-blue text-white hover:bg-brand-blue-hover shadow-sm",
-    cyan: "bg-brand-cyan text-brand-dark hover:bg-brand-cyan-hover shadow-sm",
-    white: "bg-white text-brand-blue hover:bg-slate-50 shadow-sm",
+    cyan: "bg-brand-cyan text-brand-dark hover:bg-brand-cyan-hover shadow-sm focus-visible:ring-white focus-visible:ring-offset-brand-dark",
+    white: "bg-white text-brand-blue hover:bg-slate-50 shadow-sm focus-visible:ring-white focus-visible:ring-offset-brand-blue",
   }[variant];
 
   const widthClass = fullWidthOnMobile ? "w-full sm:w-auto" : "";

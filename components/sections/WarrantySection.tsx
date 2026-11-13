@@ -42,7 +42,7 @@ export function WarrantySection() {
           <h2 className="font-mirano text-[26px] leading-[1.2] tracking-tight text-white md:text-[34px]">
             Garantia por escrito em todo conserto
           </h2>
-          <p className="leading-[26px] text-[#CCD1D1]">
+          <p className="leading-[26px] text-brand-on-dark">
             Cada serviço sai com termo de garantia. A contagem do prazo começa
             quando o aparelho fica pronto para retirada.
           </p>
@@ -55,7 +55,7 @@ export function WarrantySection() {
                 <span className="text-2xl font-bold leading-[26px] text-brand-cyan">
                   {item.period}
                 </span>
-                <span className="text-xs leading-4 text-[#CCD1D1]">
+                <span className="text-sm leading-5 text-brand-on-dark">
                   {item.service}
                 </span>
               </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 
 export function AboutSection() {
   const aboutImage = (
@@ -17,7 +18,7 @@ export function AboutSection() {
         <span className="text-[28px] font-bold leading-[31px] text-brand-blue">
           10+ anos
         </span>
-        <span className="w-40 text-[13px] leading-[17px] text-brand-muted">
+        <span className="w-40 text-sm leading-[18px] text-brand-muted">
           atendendo São Bento do Sapucaí
         </span>
       </div>
@@ -52,7 +53,7 @@ export function AboutSection() {
               celular. É a nossa região presente em cada conserto.
             </p>
           </div>
-          <Button>Falar com a Bautech</Button>
+          <Button href={createWhatsAppUrl(WHATSAPP_INTENTS.about)}>Falar com a Bautech</Button>
         </ScrollReveal>
 
         {/* Coluna da Imagem no desktop (mantida exatamente no layout original) */}

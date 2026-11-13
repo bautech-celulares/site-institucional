@@ -6,6 +6,7 @@ import { WaIcon } from "./WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
 import { createWhatsAppUrl, WHATSAPP_INTENTS } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+import { useConsent } from "@/lib/consent";
 
 function subscribeTime() {
   return () => {};
@@ -25,6 +26,8 @@ function getServerTime() {
 
 export function FloatingWhatsApp() {
   const status = useStoreStatus();
+  // Enquanto o aviso de cookies está aberto (mobile), o botão sobe para não ficar por cima dele
+  const cookieBannerOpen = useConsent() === null;
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpenedBefore, setHasOpenedBefore] = useState(false);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
@@ -89,6 +92,7 @@ export function FloatingWhatsApp() {
       ref={containerRef}
       className={cn(
         "fixed bottom-5 right-5 z-50 flex flex-col items-end transition-[opacity,transform] duration-300 md:bottom-7 md:right-7",
+        cookieBannerOpen && "max-md:bottom-[13rem]",
         isScrolledPastHero
           ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
           : "opacity-0 pointer-events-none translate-y-8 scale-90 md:opacity-100 md:pointer-events-auto md:translate-y-0 md:scale-100"
@@ -113,7 +117,7 @@ export function FloatingWhatsApp() {
                   height={44}
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[#0B5A4B] bg-[#25D366]" />
+                <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[#0B5A4B] bg-brand-whatsapp" />
               </div>
 
               {/* Nome, Verificado e Status Online */}
@@ -131,7 +135,7 @@ export function FloatingWhatsApp() {
                     <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.25 1.273 2.62 2.148 4.2 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-1.25 2.148-2.62 2.148-4.2zm-12.87 4.164l-4.242-4.243 1.414-1.414 2.828 2.828 6.364-6.364 1.414 1.414-7.778 7.779z" />
                   </svg>
                 </div>
-                <span className="text-[11px] font-medium text-emerald-300">
+                <span className="text-xs font-medium text-emerald-300">
                   {status.isOpen ? "• Online" : "• Balcão fechado"}
                 </span>
               </div>
@@ -161,7 +165,7 @@ export function FloatingWhatsApp() {
                 <path d="M8 0 L0 6 L8 12 Z" />
               </svg>
 
-              <p className="text-[13px] leading-[20px] text-brand-dark">
+              <p className="text-sm leading-[21px] text-brand-dark">
                 {status.isOpen
                   ? "Olá! Seja bem-vindo à Bautech. Quer pedir um orçamento ou tem alguma dúvida sobre o conserto do seu celular? Estou aqui para ajudar!"
                   : "Olá! Nosso balcão físico está fechado no momento, mas você já pode enviar sua mensagem que responderemos assim que abrirmos!"}
@@ -180,7 +184,7 @@ export function FloatingWhatsApp() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-[background-color,box-shadow,transform] hover:bg-[#20ba5a] hover:shadow-[0_6px_20px_rgba(37,211,102,0.55)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-whatsapp px-5 py-3 text-sm font-bold text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-[background-color,box-shadow,transform] hover:bg-[#20ba5a] hover:shadow-[0_6px_20px_rgba(37,211,102,0.55)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-whatsapp focus-visible:ring-offset-2"
             >
               <span>Sim! Falar no WhatsApp.</span>
               <svg
@@ -204,7 +208,7 @@ export function FloatingWhatsApp() {
             ? "Fechar chat do WhatsApp"
             : "Abrir atendimento Bautech no WhatsApp"
         }
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_6px_22px_rgba(37,211,102,0.45)] transition-[transform,box-shadow] duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_8px_28px_rgba(37,211,102,0.65)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 focus-visible:ring-4 focus-visible:ring-[#25D366]/60 md:h-16 md:w-16"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-whatsapp text-white shadow-[0_6px_22px_rgba(37,211,102,0.45)] transition-[transform,box-shadow] duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_8px_28px_rgba(37,211,102,0.65)] focus:outline-none focus:ring-4 focus:ring-brand-whatsapp/30 focus-visible:ring-4 focus-visible:ring-brand-whatsapp/60 md:h-16 md:w-16"
       >
         {isOpen ? (
           <span className="text-2xl font-bold leading-none">&times;</span>

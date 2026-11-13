@@ -14,6 +14,8 @@
   --color-brand-muted: #595754;
   --color-brand-border: #CDD2D1;
   --color-brand-whatsapp: #25D366;
+  --color-brand-on-dark: #CCD1D1;
+  --color-brand-on-blue: #E0F0FA;
 
   /* Movimento aveludado: curva expo-out suave, usada em todas as entradas */
   --animate-hero-fade-up: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { WaIcon } from "@/components/ui/WaIcon";
 import { useStoreStatus } from "@/lib/useStoreStatus";
@@ -46,9 +47,9 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-brand-border bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-10 md:py-5 xl:px-[120px]">
         {/* Logo */}
-        <a href="#" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2" aria-label="Bautech - Início">
+        <Link href="/" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2" aria-label="Bautech - Início">
           <Logo className="h-8 w-auto md:h-10" />
-        </a>
+        </Link>
 
         {/* Navegação Desktop */}
         <nav className="hidden items-center gap-9 text-[15px] font-medium text-brand-dark lg:flex">
@@ -77,11 +78,22 @@ export function Header() {
             <span>Chamar no WhatsApp</span>
           </a>
 
+          {/* CTA compacto de WhatsApp (somente abaixo de sm, onde o botão completo some) */}
+          <a
+            href={createWhatsAppUrl(WHATSAPP_INTENTS.hero)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-11 items-center gap-1.5 rounded-full bg-brand-blue px-4 text-sm font-bold text-white transition-[background-color,transform] hover:bg-brand-blue-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:hidden"
+          >
+            <WaIcon size={16} />
+            <span>WhatsApp</span>
+          </a>
+
           {/* Botão Menu Hambúrguer (Mobile) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-dark transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-brand-border text-brand-dark transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 lg:hidden"
             aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"

@@ -38,7 +38,7 @@ export function ReviewsSection() {
             <p className="text-[20px] sm:text-[22px] font-bold leading-[31px] text-brand-blue">
               “{FEATURED_REVIEW.text}”
             </p>
-            <p className="text-[13px] text-brand-muted">
+            <p className="text-sm text-brand-muted">
               {FEATURED_REVIEW.author.name}, avaliação de 5 estrelas no Google
             </p>
           </div>
